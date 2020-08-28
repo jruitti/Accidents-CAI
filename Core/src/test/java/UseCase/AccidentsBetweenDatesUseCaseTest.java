@@ -26,7 +26,7 @@ public class AccidentsBetweenDatesUseCaseTest {
 
     private Collection<Accident> factoryAccidents() {
         Collection<Accident> accidentsList =new ArrayList<Accident>();
-        accidentsList.add(Accident.emptyfactory());
+        accidentsList.add(Accident.emptyfactory("123123123", "asdasdasd", 25));
         return accidentsList;
     }
 

@@ -4,14 +4,27 @@ import java.time.LocalDateTime;
 
 public class Accident {
 
+    //pruebas. Luego se borra
+    public Accident(String id, String source, float humidity) {
+        ID = id;
+        Source = source;
+        Humidity = humidity;
+    }
+
+    @Override
+    public String toString() {
+        return this.ID + " "+ this.Source+" "+this.Humidity;
+    }
+    public static Accident emptyfactory(String id, String source, float humidity) {
+        return new Accident(id, source,humidity);
+    }
+    //fin Pruebas
 
     public static Accident factory(String ID, String source, float TMC, Integer severity, LocalDateTime start_Time, LocalDateTime end_Time, float start_Lat, float start_Lng, float end_Lat, float end_Lng, float distance, String description, float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airport_Code, LocalDateTime weather_Timestamp, float temperature, float wind_Chill, float humidity, float pressure, float visibility, String wind_Direction, float wind_Speed, float precipitation, String weather_Condition, boolean amenity, boolean bump, boolean crossing, boolean give_Way, boolean junction, boolean no_Exit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean traffic_Calming, boolean traffic_Signal, boolean turning_Loop, String sunrise_Sunset, String civil_Twilight, String astronomical_Twilight, String nautical_Twilight) {
         return new Accident(ID, source, TMC, severity, start_Time, end_Time, start_Lat, start_Lng, end_Lat, end_Lng, distance,  description, number, street, side, city, county, state, zipcode, country, timezone, airport_Code, weather_Timestamp, temperature, wind_Chill, humidity, pressure, visibility, wind_Direction, wind_Speed, precipitation, weather_Condition, amenity, bump, crossing, give_Way, junction, no_Exit, railway, roundabout, station, stop, traffic_Calming, traffic_Signal, turning_Loop,sunrise_Sunset,  civil_Twilight,  astronomical_Twilight,  nautical_Twilight);
     }
 
-    public static Accident emptyfactory() {
-        return new Accident();
-    }
+
 
 
     public Accident() {
