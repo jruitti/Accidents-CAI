@@ -3,12 +3,14 @@ package ar.edu.undec.accidents.mongoadapter.Mapper;
 import Model.Accident;
 import ar.edu.undec.accidents.mongoadapter.DataModel.AccidentEntity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class AccidentMapper {
 
     public static Accident dataCoreMapper(AccidentEntity anAccident){
 
-        System.out.println((anAccident.getID()+"--"+anAccident.getSource()+"--"+anAccident.getHumidity()));
-        return Accident.emptyfactory(anAccident.getID(),anAccident.getSource(),anAccident.getHumidity());
+        return Accident.emptyfactory(anAccident.getID(),anAccident.getSource(),anAccident.getHumidity(), LocalDateTime.parse(anAccident.getStartTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
 //        return Accident.factory(anAccident.getID(),anAccident.getSource(),anAccident.getTMC(),anAccident.getSeverity(),anAccident.getStart_Time(),anAccident.getEnd_Time(),
 //                anAccident.getStart_Lat(),anAccident.getStart_Lng(),anAccident.getEnd_Lat(),anAccident.getEnd_Lng(),anAccident.getDistance(),anAccident.getDescription(),

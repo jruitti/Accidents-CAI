@@ -5,18 +5,19 @@ import java.time.LocalDateTime;
 public class Accident {
 
     //pruebas. Luego se borra
-    public Accident(String id, String source, float humidity) {
+    public Accident(String id, String source, float humidity, LocalDateTime start_time) {
         ID = id;
         Source = source;
         Humidity = humidity;
+        Start_Time=start_time;
     }
 
     @Override
     public String toString() {
         return this.ID + " "+ this.Source+" "+this.Humidity;
     }
-    public static Accident emptyfactory(String id, String source, float humidity) {
-        return new Accident(id, source,humidity);
+    public static Accident emptyfactory(String id, String source, float humidity, LocalDateTime start_time) {
+        return new Accident(id, source,humidity, start_time);
     }
     //fin Pruebas
 

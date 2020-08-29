@@ -2,16 +2,12 @@ package ar.edu.undec.accidents.mongoadapter;
 
 import Repository.IAccidentsBetweenDatesRepository;
 import UseCase.AccidentsBetweenDatesUseCase;
-import ar.edu.undec.accidents.mongoadapter.CRUD.IAccidentsBetweenDatesCRUD;
-import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @SpringBootTest
 class MongoAdapterApplicationTests {
@@ -23,7 +19,9 @@ class MongoAdapterApplicationTests {
     @Test
     void queryAccidents(){
         AccidentsBetweenDatesUseCase accidentsBetweenDatesUseCase=new AccidentsBetweenDatesUseCase(iAccidentsBetweenDatesRepository);
-        Assertions.assertEquals(100,accidentsBetweenDatesUseCase.getAccidentsBetweenDates(LocalDate.now(),LocalDate.now()).size());
+        LocalDateTime fromDate=LocalDateTime.of(2016,1,1,0,0,0);
+        LocalDateTime toDate=LocalDateTime.of(2016,3,1,10,0,0);
+        Assertions.assertEquals(1047, accidentsBetweenDatesUseCase.getAccidentsBetweenDates(fromDate,toDate).size());
 
     }
 

@@ -1,10 +1,9 @@
 package ar.edu.undec.accidents.mongoadapter.DataModel;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDateTime;
 
 @Document(collection = "accidentes")
 public class AccidentEntity {
@@ -17,7 +16,8 @@ public class AccidentEntity {
     private String Source;
 //    private float TMC;
 //    private Integer Severity;
-//    private LocalDateTime Start_Time;
+    @Field("Start_Time")
+    private String startTime;
 //    private LocalDateTime End_Time;
 //    private float Start_Lat;
 //    private float Start_Lng;
@@ -103,13 +103,13 @@ public class AccidentEntity {
 //        Severity = severity;
 //    }
 //
-//    public LocalDateTime getStart_Time() {
-//        return Start_Time;
-//    }
-//
-//    public void setStart_Time(LocalDateTime start_Time) {
-//        Start_Time = start_Time;
-//    }
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
 //
 //    public LocalDateTime getEnd_Time() {
 //        return End_Time;
