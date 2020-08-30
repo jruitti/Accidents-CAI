@@ -1,8 +1,8 @@
-package UseCase;
+package usecase;
 
-import Model.Accident;
-import Repository.IAccidentsBetweenDatesRepository;
-import UseCase.Input.IAccidentsBetweenDatesInput;
+import model.Accident;
+import repository.IAccidentsBetweenDatesRepository;
+import usecase.input.IAccidentsBetweenDatesInput;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

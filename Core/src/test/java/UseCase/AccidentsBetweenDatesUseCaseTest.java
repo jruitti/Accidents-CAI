@@ -1,8 +1,8 @@
-package UseCase;
+package usecase;
 
 import Mockito.MockitoExtension;
-import Model.Accident;
-import Repository.IAccidentsBetweenDatesRepository;
+import model.Accident;
+import repository.IAccidentsBetweenDatesRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

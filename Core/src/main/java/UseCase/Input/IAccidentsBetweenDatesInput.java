@@ -1,6 +1,6 @@
-package UseCase.Input;
+package usecase.input;
 
-import Model.Accident;
+import model.Accident;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

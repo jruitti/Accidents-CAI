@@ -1,7 +1,7 @@
 package ar.edu.undec.accidents.mongoadapter;
 
-import Repository.IAccidentsBetweenDatesRepository;
-import UseCase.AccidentsBetweenDatesUseCase;
+import repository.IAccidentsBetweenDatesRepository;
+import usecase.AccidentsBetweenDatesUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
