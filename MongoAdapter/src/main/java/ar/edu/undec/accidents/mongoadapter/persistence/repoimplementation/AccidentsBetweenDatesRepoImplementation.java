@@ -1,9 +1,9 @@
-package ar.edu.undec.accidents.mongoadapter.RepoImplementation;
+package ar.edu.undec.accidents.mongoadapter.persistence.repoimplementation;
 
-import Model.Accident;
-import Repository.IAccidentsBetweenDatesRepository;
-import ar.edu.undec.accidents.mongoadapter.CRUD.IAccidentsBetweenDatesCRUD;
-import ar.edu.undec.accidents.mongoadapter.Mapper.AccidentMapper;
+import model.Accident;
+import repository.IAccidentsBetweenDatesRepository;
+import ar.edu.undec.accidents.mongoadapter.persistence.crud.IAccidentsBetweenDatesCRUD;
+import ar.edu.undec.accidents.mongoadapter.persistence.mapper.AccidentDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +25,7 @@ public class AccidentsBetweenDatesRepoImplementation implements IAccidentsBetwee
 
         String fromDateString = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(fromDate);
         String toDateString = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(toDate);
-        final ArrayList<Accident> collect = iAccidentsBetweenDatesCRUD.findByStartTimeBetween(fromDateString,toDateString).stream().map(AccidentMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
+        final ArrayList<Accident> collect = iAccidentsBetweenDatesCRUD.findByStartTimeBetween(fromDateString,toDateString).stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
         return collect;
     }
 }

@@ -1,10 +1,9 @@
-package ar.edu.undec.accidents.mongoadapter.CRUD;
+package ar.edu.undec.accidents.mongoadapter.persistence.crud;
 
-import ar.edu.undec.accidents.mongoadapter.DataModel.AccidentEntity;
+import ar.edu.undec.accidents.mongoadapter.persistence.datamodel.AccidentEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository

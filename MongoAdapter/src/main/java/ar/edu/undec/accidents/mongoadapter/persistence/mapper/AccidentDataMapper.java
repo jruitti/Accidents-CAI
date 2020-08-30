@@ -1,12 +1,12 @@
-package ar.edu.undec.accidents.mongoadapter.Mapper;
+package ar.edu.undec.accidents.mongoadapter.persistence.mapper;
 
-import Model.Accident;
-import ar.edu.undec.accidents.mongoadapter.DataModel.AccidentEntity;
+import model.Accident;
+import ar.edu.undec.accidents.mongoadapter.persistence.datamodel.AccidentEntity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class AccidentMapper {
+public class AccidentDataMapper {
 
     public static Accident dataCoreMapper(AccidentEntity anAccident){
 
