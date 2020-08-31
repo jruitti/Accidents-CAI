@@ -25,4 +25,13 @@ class MongoAdapterApplicationTests {
 
     }
 
+    @Test
+    void queryAccidentsEndpoint(){
+        AccidentsBetweenDatesUseCase accidentsBetweenDatesUseCase=new AccidentsBetweenDatesUseCase(iAccidentsBetweenDatesRepository);
+        LocalDateTime fromDate=LocalDateTime.of(2016,1,1,0,0,0);
+        LocalDateTime toDate=LocalDateTime.of(2016,12,31,10,0,0);
+        Assertions.assertEquals(1047, accidentsBetweenDatesUseCase.getAccidentsBetweenDates(fromDate,toDate).size());
+
+    }
+
 }

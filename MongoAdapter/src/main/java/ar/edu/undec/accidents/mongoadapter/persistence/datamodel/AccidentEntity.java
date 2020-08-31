@@ -1,108 +1,151 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.datamodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 
 @Document(collection = "accidentes")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccidentEntity {
 
     public AccidentEntity() {
     }
 
     @Id
-    private String ID;
-    private String Source;
-//    private float TMC;
-//    private Integer Severity;
+    @Field("ID")
+    private String id;
+    @Field("Source")
+    private String source;
+    @Field("TMC")
+    private Float tmc;
+    @Field("Severity")
+    private Integer severity;
     @Field("Start_Time")
     private String startTime;
-//    private LocalDateTime End_Time;
-//    private float Start_Lat;
-//    private float Start_Lng;
-//    private float End_Lat;
-//    private float End_Lng;
-//    private float Distance;
-//    private String Description;
-//    private float Number;
-//    private String Street;
-//    private String Side;
-//    private String City;
-//    private String County;
-//    private String State;
-//    private String Zipcode;
-//    private String Country;
-//    private String Timezone;
-//    private String Airport_Code;
-//    private LocalDateTime Weather_Timestamp;
-//    private float Temperature;
-//    private float Wind_Chill;
+    @Field("End_Time")
+    private String endTime;
+    @Field("Weather_Timestamp")
+    private String weatherTimestamp;
+    @Field("Start_Lat")
+    private Float startLat;
+    @Field("Start_Lng")
+    private Float startLng;
+    @Field("End_Lat")
+    private Float endLat;
+    @Field("End_Lng")
+    private Float endLng;
+    @Field("Distance")
+    private Float distance;
+    @Field("Number")
+    private Float number;
+    @Field("Street")
+    private String street;
+    @Field("Side")
+    private String side;
+    @Field("City")
+    private String city;
+    @Field("County")
+    private String county;
+    @Field("State")
+    private String state;
+    @Field("Zipcode")
+    private String zipcode;
+    @Field("Country")
+    private String country;
+    @Field("Timezone")
+    private String timezone;
+    @Field("Airport_Code")
+    private String airportCode;
+    @Field("Temperature")
+    private Float temperature;
+    @Field("Wind_Chill")
+    private Float windChill;
+    @Field("Humidity")
+    private Float humidity;
+    @Field("Pressure")
+    private Float pressure;
+    @Field("Visibility")
+    private Float visibility;
+    @Field("Wind_Direction")
+    private String windDirection;
+    @Field("Wind_Speed")
+    private Float windSpeed;
+    @Field("Precipitation")
+    private Float precipitation;
+    @Field("Weather_Condition")
+    private String weatherCondition;
+    @Field("Amenity")
+    private boolean amenity;
+    @Field("Bump")
+    private boolean bump;
+    @Field("Crossing")
+    private boolean crossing;
+    @Field("Give_Way")
+    private boolean giveWay;
+    @Field("Junction")
+    private boolean junction;
+    @Field("No_Exit")
+    private boolean noExit;
+    @Field("Railway")
+    private boolean railway;
+    @Field("Roundabout")
+    private boolean roundabout;
+    @Field("Station")
+    private boolean station;
+    @Field("Stop")
+    private boolean stop;
+    @Field("Traffic_Calming")
+    private boolean trafficCalming;
+    @Field("Traffic_Signal")
+    private boolean trafficSignal;
+    @Field("Turning_Loop")
+    private boolean turningLoop;
+    @Field("Sunrise_Sunset")
+    private String sunriseSunset;
+    @Field("Civil_Twilight")
+    private String civilTwilight;
+    @Field("Astronomical_Twilight")
+    private String astronomicalTwilight;
+    @Field("Nautical_Twilight")
+    private String nauticalTwilight;
+    @Field("Description")
+    private String description;
 
-    private float Humidity;
-//    private float Pressure;
-//    private float Visibility;
-//    private String Wind_Direction;
-//    private float Wind_Speed;
-//    private float Precipitation;
-//    private String Weather_Condition;
-//    private boolean Amenity;
-//    private boolean Bump;
-//    private boolean Crossing;
-//    private boolean Give_Way;
-//    private boolean Junction;
-//    private boolean No_Exit;
-//    private boolean Railway;
-//    private boolean Roundabout;
-//    private boolean Station;
-//    private boolean Stop;
-//    private boolean Traffic_Calming;
-//    private boolean Traffic_Signal;
-//    private boolean Turning_Loop;
-//    private String Sunrise_Sunset;
-//    private String Civil_Twilight;
-//    private String Astronomical_Twilight;
-//    private String Nautical_Twilight;
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSource() {
-        return Source;
+        return source;
     }
 
     public void setSource(String source) {
-        Source = source;
+        this.source = source;
     }
 
-    public float getHumidity() {
-        return Humidity;
+    public Float getTmc() {
+        return tmc;
     }
 
-    public void setHumidity(float humidity) {
-        Humidity = humidity;
+    public void setTmc(Float tmc) {
+        this.tmc = tmc;
     }
-    //    public float getTMC() {
-//        return TMC;
-//    }
-//
-//    public void setTMC(float TMC) {
-//        this.TMC = TMC;
-//    }
-//
-//    public Integer getSeverity() {
-//        return Severity;
-//    }
-//
-//    public void setSeverity(Integer severity) {
-//        Severity = severity;
-//    }
-//
+
+    public Integer getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(Integer severity) {
+        this.severity = severity;
+    }
+
     public String getStartTime() {
         return startTime;
     }
@@ -110,356 +153,356 @@ public class AccidentEntity {
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
-//
-//    public LocalDateTime getEnd_Time() {
-//        return End_Time;
-//    }
-//
-//    public void setEnd_Time(LocalDateTime end_Time) {
-//        End_Time = end_Time;
-//    }
-//
-//    public float getStart_Lat() {
-//        return Start_Lat;
-//    }
-//
-//    public void setStart_Lat(float start_Lat) {
-//        Start_Lat = start_Lat;
-//    }
-//
-//    public float getStart_Lng() {
-//        return Start_Lng;
-//    }
-//
-//    public void setStart_Lng(float start_Lng) {
-//        Start_Lng = start_Lng;
-//    }
-//
-//    public float getEnd_Lat() {
-//        return End_Lat;
-//    }
-//
-//    public void setEnd_Lat(float end_Lat) {
-//        End_Lat = end_Lat;
-//    }
-//
-//    public float getEnd_Lng() {
-//        return End_Lng;
-//    }
-//
-//    public void setEnd_Lng(float end_Lng) {
-//        End_Lng = end_Lng;
-//    }
-//
-//    public float getDistance() {
-//        return Distance;
-//    }
-//
-//    public void setDistance(float distance) {
-//        Distance = distance;
-//    }
-//
-//    public String getDescription() {
-//        return Description;
-//    }
-//
-//    public void setDescription(String description) {
-//        Description = description;
-//    }
-//
-//    public float getNumber() {
-//        return Number;
-//    }
-//
-//    public void setNumber(float number) {
-//        Number = number;
-//    }
-//
-//    public String getStreet() {
-//        return Street;
-//    }
-//
-//    public void setStreet(String street) {
-//        Street = street;
-//    }
-//
-//    public String getSide() {
-//        return Side;
-//    }
-//
-//    public void setSide(String side) {
-//        Side = side;
-//    }
-//
-//    public String getCity() {
-//        return City;
-//    }
-//
-//    public void setCity(String city) {
-//        City = city;
-//    }
-//
-//    public String getCounty() {
-//        return County;
-//    }
-//
-//    public void setCounty(String county) {
-//        County = county;
-//    }
-//
-//    public String getState() {
-//        return State;
-//    }
-//
-//    public void setState(String state) {
-//        State = state;
-//    }
-//
-//    public String getZipcode() {
-//        return Zipcode;
-//    }
-//
-//    public void setZipcode(String zipcode) {
-//        Zipcode = zipcode;
-//    }
-//
-//    public String getCountry() {
-//        return Country;
-//    }
-//
-//    public void setCountry(String country) {
-//        Country = country;
-//    }
-//
-//    public String getTimezone() {
-//        return Timezone;
-//    }
-//
-//    public void setTimezone(String timezone) {
-//        Timezone = timezone;
-//    }
-//
-//    public String getAirport_Code() {
-//        return Airport_Code;
-//    }
-//
-//    public void setAirport_Code(String airport_Code) {
-//        Airport_Code = airport_Code;
-//    }
-//
-//    public LocalDateTime getWeather_Timestamp() {
-//        return Weather_Timestamp;
-//    }
-//
-//    public void setWeather_Timestamp(LocalDateTime weather_Timestamp) {
-//        Weather_Timestamp = weather_Timestamp;
-//    }
-//
-//    public float getTemperature() {
-//        return Temperature;
-//    }
-//
-//    public void setTemperature(float temperature) {
-//        Temperature = temperature;
-//    }
-//
-//    public float getWind_Chill() {
-//        return Wind_Chill;
-//    }
-//
-//    public void setWind_Chill(float wind_Chill) {
-//        Wind_Chill = wind_Chill;
-//    }
-//
-//    public float getHumidity() {
-//        return Humidity;
-//    }
-//
-//    public void setHumidity(float humidity) {
-//        Humidity = humidity;
-//    }
-//
-//    public float getPressure() {
-//        return Pressure;
-//    }
-//
-//    public void setPressure(float pressure) {
-//        Pressure = pressure;
-//    }
-//
-//    public float getVisibility() {
-//        return Visibility;
-//    }
-//
-//    public void setVisibility(float visibility) {
-//        Visibility = visibility;
-//    }
-//
-//    public String getWind_Direction() {
-//        return Wind_Direction;
-//    }
-//
-//    public void setWind_Direction(String wind_Direction) {
-//        Wind_Direction = wind_Direction;
-//    }
-//
-//    public float getWind_Speed() {
-//        return Wind_Speed;
-//    }
-//
-//    public void setWind_Speed(float wind_Speed) {
-//        Wind_Speed = wind_Speed;
-//    }
-//
-//    public float getPrecipitation() {
-//        return Precipitation;
-//    }
-//
-//    public void setPrecipitation(float precipitation) {
-//        Precipitation = precipitation;
-//    }
-//
-//    public String getWeather_Condition() {
-//        return Weather_Condition;
-//    }
-//
-//    public void setWeather_Condition(String weather_Condition) {
-//        Weather_Condition = weather_Condition;
-//    }
-//
-//    public boolean isAmenity() {
-//        return Amenity;
-//    }
-//
-//    public void setAmenity(boolean amenity) {
-//        Amenity = amenity;
-//    }
-//
-//    public boolean isBump() {
-//        return Bump;
-//    }
-//
-//    public void setBump(boolean bump) {
-//        Bump = bump;
-//    }
-//
-//    public boolean isCrossing() {
-//        return Crossing;
-//    }
-//
-//    public void setCrossing(boolean crossing) {
-//        Crossing = crossing;
-//    }
-//
-//    public boolean isGive_Way() {
-//        return Give_Way;
-//    }
-//
-//    public void setGive_Way(boolean give_Way) {
-//        Give_Way = give_Way;
-//    }
-//
-//    public boolean isJunction() {
-//        return Junction;
-//    }
-//
-//    public void setJunction(boolean junction) {
-//        Junction = junction;
-//    }
-//
-//    public boolean isNo_Exit() {
-//        return No_Exit;
-//    }
-//
-//    public void setNo_Exit(boolean no_Exit) {
-//        No_Exit = no_Exit;
-//    }
-//
-//    public boolean isRailway() {
-//        return Railway;
-//    }
-//
-//    public void setRailway(boolean railway) {
-//        Railway = railway;
-//    }
-//
-//    public boolean isRoundabout() {
-//        return Roundabout;
-//    }
-//
-//    public void setRoundabout(boolean roundabout) {
-//        Roundabout = roundabout;
-//    }
-//
-//    public boolean isStation() {
-//        return Station;
-//    }
-//
-//    public void setStation(boolean station) {
-//        Station = station;
-//    }
-//
-//    public boolean isStop() {
-//        return Stop;
-//    }
-//
-//    public void setStop(boolean stop) {
-//        Stop = stop;
-//    }
-//
-//    public boolean isTraffic_Calming() {
-//        return Traffic_Calming;
-//    }
-//
-//    public void setTraffic_Calming(boolean traffic_Calming) {
-//        Traffic_Calming = traffic_Calming;
-//    }
-//
-//    public boolean isTraffic_Signal() {
-//        return Traffic_Signal;
-//    }
-//
-//    public void setTraffic_Signal(boolean traffic_Signal) {
-//        Traffic_Signal = traffic_Signal;
-//    }
-//
-//    public boolean isTurning_Loop() {
-//        return Turning_Loop;
-//    }
-//
-//    public void setTurning_Loop(boolean turning_Loop) {
-//        Turning_Loop = turning_Loop;
-//    }
-//
-//    public String getSunrise_Sunset() {
-//        return Sunrise_Sunset;
-//    }
-//
-//    public void setSunrise_Sunset(String sunrise_Sunset) {
-//        Sunrise_Sunset = sunrise_Sunset;
-//    }
-//
-//    public String getCivil_Twilight() {
-//        return Civil_Twilight;
-//    }
-//
-//    public void setCivil_Twilight(String civil_Twilight) {
-//        Civil_Twilight = civil_Twilight;
-//    }
-//
-//    public String getAstronomical_Twilight() {
-//        return Astronomical_Twilight;
-//    }
-//
-//    public void setAstronomical_Twilight(String astronomical_Twilight) {
-//        Astronomical_Twilight = astronomical_Twilight;
-//    }
-//
-//    public String getNautical_Twilight() {
-//        return Nautical_Twilight;
-//    }
-//
-//    public void setNautical_Twilight(String nautical_Twilight) {
-//        Nautical_Twilight = nautical_Twilight;
-//    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getWeatherTimestamp() {
+        return weatherTimestamp;
+    }
+
+    public void setWeatherTimestamp(String weatherTimestamp) {
+        this.weatherTimestamp = weatherTimestamp;
+    }
+
+    public Float getStartLat() {
+        return startLat;
+    }
+
+    public void setStartLat(Float startLat) {
+        this.startLat = startLat;
+    }
+
+    public Float getStartLng() {
+        return startLng;
+    }
+
+    public void setStartLng(Float startLng) {
+        this.startLng = startLng;
+    }
+
+    public Float getEndLat() {
+        return endLat;
+    }
+
+    public void setEndLat(Float endLat) {
+        this.endLat = endLat;
+    }
+
+    public Float getEndLng() {
+        return endLng;
+    }
+
+    public void setEndLng(Float endLng) {
+        this.endLng = endLng;
+    }
+
+    public Float getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Float distance) {
+        this.distance = distance;
+    }
+
+    public Float getNumber() {
+        return number;
+    }
+
+    public void setNumber(Float number) {
+        this.number = number;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getSide() {
+        return side;
+    }
+
+    public void setSide(String side) {
+        this.side = side;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public String getAirportCode() {
+        return airportCode;
+    }
+
+    public void setAirportCode(String airportCode) {
+        this.airportCode = airportCode;
+    }
+
+    public Float getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Float temperature) {
+        this.temperature = temperature;
+    }
+
+    public Float getWindChill() {
+        return windChill;
+    }
+
+    public void setWindChill(Float windChill) {
+        this.windChill = windChill;
+    }
+
+    public Float getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(Float humidity) {
+        this.humidity = humidity;
+    }
+
+    public Float getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(Float pressure) {
+        this.pressure = pressure;
+    }
+
+    public Float getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(Float visibility) {
+        this.visibility = visibility;
+    }
+
+    public String getWindDirection() {
+        return windDirection;
+    }
+
+    public void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
+    }
+
+    public Float getWindSpeed() {
+        return windSpeed;
+    }
+
+    public void setWindSpeed(Float windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    public Float getPrecipitation() {
+        return precipitation;
+    }
+
+    public void setPrecipitation(Float precipitation) {
+        this.precipitation = precipitation;
+    }
+
+    public String getWeatherCondition() {
+        return weatherCondition;
+    }
+
+    public void setWeatherCondition(String weatherCondition) {
+        this.weatherCondition = weatherCondition;
+    }
+
+    public boolean isAmenity() {
+        return amenity;
+    }
+
+    public void setAmenity(boolean amenity) {
+        this.amenity = amenity;
+    }
+
+    public boolean isBump() {
+        return bump;
+    }
+
+    public void setBump(boolean bump) {
+        this.bump = bump;
+    }
+
+    public boolean isCrossing() {
+        return crossing;
+    }
+
+    public void setCrossing(boolean crossing) {
+        this.crossing = crossing;
+    }
+
+    public boolean isGiveWay() {
+        return giveWay;
+    }
+
+    public void setGiveWay(boolean giveWay) {
+        this.giveWay = giveWay;
+    }
+
+    public boolean isJunction() {
+        return junction;
+    }
+
+    public void setJunction(boolean junction) {
+        this.junction = junction;
+    }
+
+    public boolean isNoExit() {
+        return noExit;
+    }
+
+    public void setNoExit(boolean noExit) {
+        this.noExit = noExit;
+    }
+
+    public boolean isRailway() {
+        return railway;
+    }
+
+    public void setRailway(boolean railway) {
+        this.railway = railway;
+    }
+
+    public boolean isRoundabout() {
+        return roundabout;
+    }
+
+    public void setRoundabout(boolean roundabout) {
+        this.roundabout = roundabout;
+    }
+
+    public boolean isStation() {
+        return station;
+    }
+
+    public void setStation(boolean station) {
+        this.station = station;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public boolean isTrafficCalming() {
+        return trafficCalming;
+    }
+
+    public void setTrafficCalming(boolean trafficCalming) {
+        this.trafficCalming = trafficCalming;
+    }
+
+    public boolean isTrafficSignal() {
+        return trafficSignal;
+    }
+
+    public void setTrafficSignal(boolean trafficSignal) {
+        this.trafficSignal = trafficSignal;
+    }
+
+    public boolean isTurningLoop() {
+        return turningLoop;
+    }
+
+    public void setTurningLoop(boolean turningLoop) {
+        this.turningLoop = turningLoop;
+    }
+
+    public String getSunriseSunset() {
+        return sunriseSunset;
+    }
+
+    public void setSunriseSunset(String sunriseSunset) {
+        this.sunriseSunset = sunriseSunset;
+    }
+
+    public String getCivilTwilight() {
+        return civilTwilight;
+    }
+
+    public void setCivilTwilight(String civilTwilight) {
+        this.civilTwilight = civilTwilight;
+    }
+
+    public String getAstronomicalTwilight() {
+        return astronomicalTwilight;
+    }
+
+    public void setAstronomicalTwilight(String astronomicalTwilight) {
+        this.astronomicalTwilight = astronomicalTwilight;
+    }
+
+    public String getNauticalTwilight() {
+        return nauticalTwilight;
+    }
+
+    public void setNauticalTwilight(String nauticalTwilight) {
+        this.nauticalTwilight = nauticalTwilight;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

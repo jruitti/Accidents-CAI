@@ -8,17 +8,17 @@ public class AccidentDTO {
 
     public AccidentDTO(@JsonProperty("id") String id,
                        @JsonProperty("source") String source,
-                       @JsonProperty("tmc") float tmc,
+                       @JsonProperty("tmc") Float tmc,
                        @JsonProperty("severity") Integer severity,
                        @JsonProperty("startTime") LocalDateTime startTime,
                        @JsonProperty("endTime") LocalDateTime endTime,
                        @JsonProperty("weatherTimestamp") LocalDateTime weatherTimestamp,
-                       @JsonProperty("startLat") float startLat,
-                       @JsonProperty("startLng") float startLng,
-                       @JsonProperty("endLat") float endLat,
-                       @JsonProperty("endLng") float endLng,
-                       @JsonProperty("distance") float distance,
-                       @JsonProperty("number") float number,
+                       @JsonProperty("startLat") Float startLat,
+                       @JsonProperty("startLng") Float startLng,
+                       @JsonProperty("endLat") Float endLat,
+                       @JsonProperty("endLng") Float endLng,
+                       @JsonProperty("distance") Float distance,
+                       @JsonProperty("number") Float number,
                        @JsonProperty("street") String street,
                        @JsonProperty("side") String side,
                        @JsonProperty("city") String city,
@@ -28,14 +28,14 @@ public class AccidentDTO {
                        @JsonProperty("country") String country,
                        @JsonProperty("timezone") String timezone,
                        @JsonProperty("airportCode") String airportCode,
-                       @JsonProperty("temperature") float temperature,
-                       @JsonProperty("windChill") float windChill,
-                       @JsonProperty("humidity") float humidity,
-                       @JsonProperty("pressure") float pressure,
-                       @JsonProperty("visibility") float visibility,
+                       @JsonProperty("temperature") Float temperature,
+                       @JsonProperty("windChill") Float windChill,
+                       @JsonProperty("humidity") Float humidity,
+                       @JsonProperty("pressure") Float pressure,
+                       @JsonProperty("visibility") Float visibility,
                        @JsonProperty("windDirection") String windDirection,
-                       @JsonProperty("windSpeed") float windSpeed,
-                       @JsonProperty("precipitation") float precipitation,
+                       @JsonProperty("windSpeed") Float windSpeed,
+                       @JsonProperty("precipitation") Float precipitation,
                        @JsonProperty("weatherCondition") String weatherCondition,
                        @JsonProperty("amenity") boolean amenity,
                        @JsonProperty("bump") boolean bump,
@@ -111,7 +111,7 @@ public class AccidentDTO {
     @JsonProperty("source")
     private String source;
     @JsonProperty("tmc")
-    private float tmc;
+    private Float tmc;
     @JsonProperty("severity")
     private Integer severity;
     @JsonProperty("startTime")
@@ -121,17 +121,17 @@ public class AccidentDTO {
     @JsonProperty("weatherTimestamp")
     private LocalDateTime weatherTimestamp;
     @JsonProperty("startLat")
-    private float startLat;
+    private Float startLat;
     @JsonProperty("startLng")
-    private float startLng;
+    private Float startLng;
     @JsonProperty("endLat")
-    private float endLat;
+    private Float endLat;
     @JsonProperty("endLng")
-    private float endLng;
+    private Float endLng;
     @JsonProperty("distance")
-    private float distance;
+    private Float distance;
     @JsonProperty("number")
-    private float number;
+    private Float number;
     @JsonProperty("street")
     private String street;
     @JsonProperty("side")
@@ -151,21 +151,21 @@ public class AccidentDTO {
     @JsonProperty("airportCode")
     private String airportCode;
     @JsonProperty("temperature")
-    private float temperature;
+    private Float temperature;
     @JsonProperty("windChill")
-    private float windChill;
+    private Float windChill;
     @JsonProperty("humidity")
-    private float humidity;
+    private Float humidity;
     @JsonProperty("pressure")
-    private float pressure;
+    private Float pressure;
     @JsonProperty("visibility")
-    private float visibility;
+    private Float visibility;
     @JsonProperty("windDirection")
     private String windDirection;
     @JsonProperty("windSpeed")
-    private float windSpeed;
+    private Float windSpeed;
     @JsonProperty("precipitation")
-    private float precipitation;
+    private Float precipitation;
     @JsonProperty("weatherCondition")
     private String weatherCondition;
     @JsonProperty("amenity")

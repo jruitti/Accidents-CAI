@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Accident {
 
     //pruebas. Luego se borra
-    public Accident(String id, String source, float humidity, LocalDateTime startTime) {
+    public Accident(String id, String source, Float humidity, LocalDateTime startTime) {
         this.id = id;
         this.source = source;
         this.humidity = humidity;
@@ -17,12 +17,12 @@ public class Accident {
         return this.id + " " + this.source + " " + this.humidity;
     }
 
-    public static Accident emptyfactory(String id, String source, float humidity, LocalDateTime startTime) {
+    public static Accident emptyfactory(String id, String source, Float humidity, LocalDateTime startTime) {
         return new Accident(id, source, humidity, startTime);
     }
     //fin Pruebas
 
-    public static Accident factory(String id, String source, float tmc, Integer severity, LocalDateTime startTime, LocalDateTime endTime, float startLat, float startLng, float endLat, float endLng, float distance, String description, float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airport_Code, LocalDateTime weatherTimestamp, float temperature, float windChill, float humidity, float pressure, float visibility, String windDirection, float windSpeed, float precipitation, String weatherCondition, boolean amenity, boolean bump, boolean crossing, boolean giveWay, boolean junction, boolean noExit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean trafficCalming, boolean trafficSignal, boolean turningLoop, String sunriseSunset, String civilTwilight, String astronomicalTwilight, String nauticalTwilight) {
+    public static Accident factory(String id, String source, Float tmc, Integer severity, LocalDateTime startTime, LocalDateTime endTime, Float startLat, Float startLng, Float endLat, Float endLng, Float distance, String description, Float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airport_Code, LocalDateTime weatherTimestamp, Float temperature, Float windChill, Float humidity, Float pressure, Float visibility, String windDirection, Float windSpeed, Float precipitation, String weatherCondition, boolean amenity, boolean bump, boolean crossing, boolean giveWay, boolean junction, boolean noExit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean trafficCalming, boolean trafficSignal, boolean turningLoop, String sunriseSunset, String civilTwilight, String astronomicalTwilight, String nauticalTwilight) {
         return new Accident(id, source, tmc, severity, startTime, endTime, weatherTimestamp, startLat, startLng, endLat, endLng, distance, number, street, side, city, county, state, zipcode, country, timezone, airport_Code, temperature, windChill, humidity, pressure, visibility, windDirection, windSpeed, precipitation, weatherCondition, amenity, bump, crossing, giveWay, junction, noExit, railway, roundabout, station, stop, trafficCalming, trafficSignal, turningLoop, sunriseSunset, civilTwilight, astronomicalTwilight, nauticalTwilight, description);
     }
 
@@ -31,7 +31,7 @@ public class Accident {
 
     }
 
-    private Accident(String id, String source, float tmc, Integer severity, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime weatherTimestamp, float startLat, float startLng, float endLat, float endLng, float distance, float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airportCode, float temperature, float windChill, float humidity, float pressure, float visibility, String windDirection, float windSpeed, float precipitation, String weatherCondition, boolean amenity, boolean bump, boolean crossing, boolean giveWay, boolean junction, boolean noExit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean trafficCalming, boolean trafficSignal, boolean turningLoop, String sunriseSunset, String civilTwilight, String astronomicalTwilight, String nauticalTwilight, String description) {
+    private Accident(String id, String source, Float tmc, Integer severity, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime weatherTimestamp, Float startLat, Float startLng, Float endLat, Float endLng, Float distance, Float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airportCode, Float temperature, Float windChill, Float humidity, Float pressure, Float visibility, String windDirection, Float windSpeed, Float precipitation, String weatherCondition, boolean amenity, boolean bump, boolean crossing, boolean giveWay, boolean junction, boolean noExit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean trafficCalming, boolean trafficSignal, boolean turningLoop, String sunriseSunset, String civilTwilight, String astronomicalTwilight, String nauticalTwilight, String description) {
         this.id = id;
         this.source = source;
         this.tmc = tmc;
@@ -85,17 +85,17 @@ public class Accident {
 
     private String id;
     private String source;
-    private float tmc;
+    private Float tmc;
     private Integer severity;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private LocalDateTime weatherTimestamp;
-    private float startLat;
-    private float startLng;
-    private float endLat;
-    private float endLng;
-    private float distance;
-    private float number;
+    private Float startLat;
+    private Float startLng;
+    private Float endLat;
+    private Float endLng;
+    private Float distance;
+    private Float number;
     private String street;
     private String side;
     private String city;
@@ -105,14 +105,14 @@ public class Accident {
     private String country;
     private String timezone;
     private String airportCode;
-    private float temperature;
-    private float windChill;
-    private float humidity;
-    private float pressure;
-    private float visibility;
+    private Float temperature;
+    private Float windChill;
+    private Float humidity;
+    private Float pressure;
+    private Float visibility;
     private String windDirection;
-    private float windSpeed;
-    private float precipitation;
+    private Float windSpeed;
+    private Float precipitation;
     private String weatherCondition;
     private boolean amenity;
     private boolean bump;
@@ -141,7 +141,7 @@ public class Accident {
         return source;
     }
 
-    public float getTmc() {
+    public Float getTmc() {
         return tmc;
     }
 
@@ -161,27 +161,27 @@ public class Accident {
         return weatherTimestamp;
     }
 
-    public float getStartLat() {
+    public Float getStartLat() {
         return startLat;
     }
 
-    public float getStartLng() {
+    public Float getStartLng() {
         return startLng;
     }
 
-    public float getEndLat() {
+    public Float getEndLat() {
         return endLat;
     }
 
-    public float getEndLng() {
+    public Float getEndLng() {
         return endLng;
     }
 
-    public float getDistance() {
+    public Float getDistance() {
         return distance;
     }
 
-    public float getNumber() {
+    public Float getNumber() {
         return number;
     }
 
@@ -221,23 +221,23 @@ public class Accident {
         return airportCode;
     }
 
-    public float getTemperature() {
+    public Float getTemperature() {
         return temperature;
     }
 
-    public float getWindChill() {
+    public Float getWindChill() {
         return windChill;
     }
 
-    public float getHumidity() {
+    public Float getHumidity() {
         return humidity;
     }
 
-    public float getPressure() {
+    public Float getPressure() {
         return pressure;
     }
 
-    public float getVisibility() {
+    public Float getVisibility() {
         return visibility;
     }
 
@@ -245,11 +245,11 @@ public class Accident {
         return windDirection;
     }
 
-    public float getWindSpeed() {
+    public Float getWindSpeed() {
         return windSpeed;
     }
 
-    public float getPrecipitation() {
+    public Float getPrecipitation() {
         return precipitation;
     }
 

@@ -1,5 +1,6 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.repoimplementation;
 
+import ar.edu.undec.accidents.mongoadapter.persistence.datamodel.AccidentEntity;
 import model.Accident;
 import repository.IAccidentsBetweenDatesRepository;
 import ar.edu.undec.accidents.mongoadapter.persistence.crud.IAccidentsBetweenDatesCRUD;
@@ -25,7 +26,14 @@ public class AccidentsBetweenDatesRepoImplementation implements IAccidentsBetwee
 
         String fromDateString = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(fromDate);
         String toDateString = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(toDate);
-        final ArrayList<Accident> collect = iAccidentsBetweenDatesCRUD.findByStartTimeBetween(fromDateString,toDateString).stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
-        return collect;
+        long inicio=System.currentTimeMillis();
+        final Collection<AccidentEntity> collect= iAccidentsBetweenDatesCRUD.findByStartTimeBetween(fromDateString,toDateString);
+        long fin=System.currentTimeMillis();
+        System.out.println("Tiempo de retrieve "+(fin-inicio));
+        final ArrayList<Accident> collect1 = collect.stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
+        long fin2=System.currentTimeMillis();
+        System.out.println("Tiempo de stream mapear "+(fin2-fin));
+        return collect1;
+
     }
 }

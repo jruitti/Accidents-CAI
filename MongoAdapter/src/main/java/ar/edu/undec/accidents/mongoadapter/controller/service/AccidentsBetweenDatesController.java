@@ -29,6 +29,7 @@ public class AccidentsBetweenDatesController {
 
         ResponseEntity<?> response = null;
         Collection<AccidentDTO> result = accidentsBetweenDatesInput.getAccidentsBetweenDates(fromDate,toDate).stream().map(AccidentDTOMapper::CoreDTOMapper).collect(Collectors.toCollection(ArrayList::new));
+
         response = ResponseEntity.ok(result);
 
         return response;
