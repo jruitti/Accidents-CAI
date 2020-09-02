@@ -11,4 +11,6 @@ public interface IAccidentsBetweenDatesCRUD extends MongoRepository<AccidentEnti
 
     Collection<AccidentEntity> findByStartTimeBetween(String fromDate, String toDate);
 
+
+
 }

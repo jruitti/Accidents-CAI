@@ -2,6 +2,7 @@ package ar.edu.undec.accidents.mongoadapter.persistence.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -23,6 +24,7 @@ public class AccidentEntity {
     @Field("Severity")
     private Integer severity;
     @Field("Start_Time")
+    @Indexed
     private String startTime;
     @Field("End_Time")
     private String endTime;

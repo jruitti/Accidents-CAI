@@ -23,13 +23,11 @@ public class AccidentsBetweenDatesController {
 
 
     @GetMapping(value="/accidents")
-    public ResponseEntity<?> getAccidents(
+    public ResponseEntity<?> getAccidentsBetweenDates(
             @RequestParam(value = "fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime fromDate,
             @RequestParam(value = "toDate") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime toDate) {
-
         ResponseEntity<?> response = null;
         Collection<AccidentDTO> result = accidentsBetweenDatesInput.getAccidentsBetweenDates(fromDate,toDate).stream().map(AccidentDTOMapper::CoreDTOMapper).collect(Collectors.toCollection(ArrayList::new));
-
         response = ResponseEntity.ok(result);
 
         return response;
