@@ -1,15 +1,15 @@
-package UseCase;
+package usecase;
 
 import Mockito.MockitoExtension;
-import Model.Accident;
-import Repository.IAccidentsBetweenDatesRepository;
+import model.Accident;
+import repository.IAccidentsBetweenDatesRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -26,14 +26,14 @@ public class AccidentsBetweenDatesUseCaseTest {
 
     private Collection<Accident> factoryAccidents() {
         Collection<Accident> accidentsList =new ArrayList<Accident>();
-        accidentsList.add(Accident.emptyfactory());
+        accidentsList.add(Accident.emptyfactory("123123123", "asdasdasd", null, LocalDateTime.now()));
         return accidentsList;
     }
 
     @Test
     void getAccidentsBetweenDates_ExistsAccidentes_ReturnList(){
-        LocalDate fromDate=LocalDate.of(2016,6,1);
-        LocalDate toDate=LocalDate.of(2016,6,30);
+        LocalDateTime fromDate=LocalDateTime.of(2016,6,1,0,0,0);
+        LocalDateTime toDate=LocalDateTime.of(2016,6,30,0,0,0);
         AccidentsBetweenDatesUseCase accidentsBetweenDatesUseCase = new AccidentsBetweenDatesUseCase(accidentsBetweenDatesRepository);
         when(accidentsBetweenDatesRepository.queryAccidentsBetweenDates(fromDate,toDate)).thenReturn(accidentCollection);
         Assertions.assertNotEquals(0, accidentsBetweenDatesUseCase.getAccidentsBetweenDates(fromDate,toDate).size());

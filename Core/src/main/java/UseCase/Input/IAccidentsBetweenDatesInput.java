@@ -1,10 +1,10 @@
-package UseCase.Input;
+package usecase.input;
 
-import Model.Accident;
+import model.Accident;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 public interface IAccidentsBetweenDatesInput {
-    Collection<Accident> getAccidentsBetweenDates(LocalDate fromDate, LocalDate toDate);
+    Collection<Accident> getAccidentsBetweenDates(LocalDateTime fromDate, LocalDateTime toDate);
 }
