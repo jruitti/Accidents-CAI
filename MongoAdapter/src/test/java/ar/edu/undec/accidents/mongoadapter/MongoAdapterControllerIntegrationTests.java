@@ -1,7 +1,9 @@
 package ar.edu.undec.accidents.mongoadapter;
 
 import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.AccidentDTO;
+import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.CommonConditionDTO;
 import ar.edu.undec.accidents.mongoadapter.controller.service.AccidentsBetweenDatesController;
+import ar.edu.undec.accidents.mongoadapter.controller.service.MostCommonConditionController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @SpringBootTest
-class MongoAdapterApplicationTests {
+class MongoAdapterControllerIntegrationTests {
 
     @Autowired
     AccidentsBetweenDatesController accidentsBetweenDatesController;
-
+    @Autowired
+    MostCommonConditionController mostCommonConditionController;
 
     @Test
     void getAccidentsBetweenDates_ExistsAccidents_ReturnCollectionAnd200(){
@@ -25,6 +28,13 @@ class MongoAdapterApplicationTests {
         LocalDateTime toDate=LocalDateTime.of(2016,12,31,10,0,0);
         ResponseEntity response=accidentsBetweenDatesController.getAccidentsBetweenDates(fromDate,toDate);
         Assertions.assertEquals(410600,((ArrayList<AccidentDTO>)response.getBody()).size());
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    void getMostCommonCondition_ExistsAccidents_ReturnCollectionAnd200(){
+        ResponseEntity response=mostCommonConditionController.getMostCommonCondition();
+        Assertions.assertEquals(48,((ArrayList<CommonConditionDTO>)response.getBody()).size());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 

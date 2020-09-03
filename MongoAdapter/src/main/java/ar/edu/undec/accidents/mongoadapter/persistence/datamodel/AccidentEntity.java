@@ -15,7 +15,6 @@ public class AccidentEntity {
     }
 
     @Id
-    @Field("ID")
     private String id;
     @Field("Source")
     private String source;
