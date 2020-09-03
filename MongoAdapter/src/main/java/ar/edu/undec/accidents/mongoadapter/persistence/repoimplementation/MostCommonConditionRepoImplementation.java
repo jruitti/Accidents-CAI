@@ -1,51 +1,38 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.repoimplementation;
 
-import ar.edu.undec.accidents.mongoadapter.persistence.crud.IMostCommonConditionsCRUD;
 import ar.edu.undec.accidents.mongoadapter.persistence.datamodel.CommonConditionEntity;
+import ar.edu.undec.accidents.mongoadapter.persistence.mapper.CommonConditionDataMapper;
 import model.CommonCondition;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.GroupOperation;
+import org.springframework.data.mongodb.core.aggregation.*;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 import repository.IMostCommonConditionsRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 
 @Service
 public class MostCommonConditionRepoImplementation implements IMostCommonConditionsRepository {
 
+    private final MongoTemplate mongoTemplate;
+
+    public MostCommonConditionRepoImplementation(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Override
     public Collection<CommonCondition> queryMostCommonConditions() {
-        GroupOperation groupByStateAndSumPop = group("Civil_Twilight")
-                .count().as("conteo");
-
-        Aggregation aggregation = newAggregation(
-                groupByStateAndSumPop);
-        AggregationResults<CommonConditionEntity> result = mongoTemplate
-
-
+        MatchOperation matchOperation= match(new Criteria("Wind_Direction").ne(null).and("Civil_Twilight").ne(null));
+        GroupOperation groupOperation = group("Civil_Twilight","Wind_Direction").count().as("conteo");
+        SortOperation sortOperation = sort(Sort.Direction.DESC, "conteo");
+        Aggregation aggregation = newAggregation(matchOperation,groupOperation,sortOperation);
+        AggregationResults<CommonConditionEntity> result = mongoTemplate.aggregate(aggregation,"accidentes",CommonConditionEntity.class);
+        return result.getMappedResults().stream().map(CommonConditionDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
     }
-
-//    "$Civil_Twilight"},
-//        cuenta: {$sum:1}
-//        }
-//        }])
-//
-//        visi: "$Visibility(mi)",
-//        humi: "$Humidity(%)",
-//        winspd: "$Wind_Speed(mph)",
-//        windir: "$Wind_Direction",
-//        weacond: "$Weather_Condition",
-//
-//        "Temperature(F)"
-//        "Humidity(%)"
-//        "Pressure(in)"
-//        "Visibility(mi)"
 }

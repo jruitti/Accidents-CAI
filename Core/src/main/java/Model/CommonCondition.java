@@ -1,20 +1,17 @@
 package model;
 
+import java.util.Map;
+
 public class CommonCondition {
+    private Map<String, Object> civilTwilight;
+    private Integer conteo;
 
-    private String id;
-    private String civilTwilight;
-    private String weatherCondition;
-    private String precipitation;
-
-    public CommonCondition(String civilTwilight, String weatherCondition, String precipitation) {
+    public CommonCondition(Map<String, Object> civilTwilight, Integer conteo) {
         this.civilTwilight = civilTwilight;
-        this.weatherCondition = weatherCondition;
-        this.precipitation = precipitation;
+        this.conteo = conteo;
     }
 
-    public static CommonCondition factory(String civilTwilight, String weatherCondition, String precipitation) {
-
-        return new CommonCondition(civilTwilight,weatherCondition,precipitation);
+    public static CommonCondition factory(Map<String, Object> civilTwilight, Integer conteo) {
+        return new CommonCondition(civilTwilight, conteo);
     }
 }

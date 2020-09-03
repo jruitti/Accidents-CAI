@@ -11,6 +11,7 @@ import repository.IMostCommonConditionsRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import static org.mockito.Mockito.when;
 
@@ -32,7 +33,7 @@ public class MostCommonConditionsUseCaseTest {
     }
 
     private Collection<CommonCondition> factoryConditions() {
-        CommonCondition aCondition=CommonCondition.factory("Night","Sunny","Rain");
+        CommonCondition aCondition=CommonCondition.factory(new HashMap<>(), 1);
         Collection<CommonCondition> theCollection=new ArrayList<CommonCondition>();
         theCollection.add(aCondition);
         return theCollection;

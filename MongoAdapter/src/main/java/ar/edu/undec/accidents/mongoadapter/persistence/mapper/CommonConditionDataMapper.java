@@ -6,6 +6,6 @@ import model.CommonCondition;
 public class CommonConditionDataMapper {
 
     public static CommonCondition dataCoreMapper(CommonConditionEntity aCondition){
-        return CommonCondition.factory(aCondition.getCivilTwilight(), aCondition.getWeatherCondition(), aCondition.getPrecipitation());
+        return CommonCondition.factory(aCondition.getCivil_Twilight(),aCondition.getConteo());
     }
 }

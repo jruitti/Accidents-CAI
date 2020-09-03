@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import repository.IMostCommonConditionsRepository;
+import usecase.MostCommonConditionsUseCase;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ class MongoAdapterApplicationTests {
 
     @Autowired
     AccidentsBetweenDatesController accidentsBetweenDatesController;
+    @Autowired
+    IMostCommonConditionsRepository mostCommonConditionsRepository;
 
 
     @Test
@@ -26,6 +30,12 @@ class MongoAdapterApplicationTests {
         ResponseEntity response=accidentsBetweenDatesController.getAccidentsBetweenDates(fromDate,toDate);
         Assertions.assertEquals(410600,((ArrayList<AccidentDTO>)response.getBody()).size());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    void getCommonConditions_DataExist_returnCollection(){
+        MostCommonConditionsUseCase mostCommonConditionsUseCase=new MostCommonConditionsUseCase(mostCommonConditionsRepository);
+        Assertions.assertEquals(48,mostCommonConditionsUseCase.getMostCommonConditions().size());
     }
 
 }
