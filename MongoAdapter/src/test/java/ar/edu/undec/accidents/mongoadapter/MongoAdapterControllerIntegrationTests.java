@@ -1,27 +1,26 @@
 package ar.edu.undec.accidents.mongoadapter;
 
 import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.AccidentDTO;
+import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.CommonConditionDTO;
 import ar.edu.undec.accidents.mongoadapter.controller.service.AccidentsBetweenDatesController;
+import ar.edu.undec.accidents.mongoadapter.controller.service.MostCommonConditionController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import repository.IMostCommonConditionsRepository;
-import usecase.MostCommonConditionsUseCase;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @SpringBootTest
-class MongoAdapterApplicationTests {
+class MongoAdapterControllerIntegrationTests {
 
     @Autowired
     AccidentsBetweenDatesController accidentsBetweenDatesController;
     @Autowired
-    IMostCommonConditionsRepository mostCommonConditionsRepository;
-
+    MostCommonConditionController mostCommonConditionController;
 
     @Test
     void getAccidentsBetweenDates_ExistsAccidents_ReturnCollectionAnd200(){
@@ -33,9 +32,10 @@ class MongoAdapterApplicationTests {
     }
 
     @Test
-    void getCommonConditions_DataExist_returnCollection(){
-        MostCommonConditionsUseCase mostCommonConditionsUseCase=new MostCommonConditionsUseCase(mostCommonConditionsRepository);
-        Assertions.assertEquals(48,mostCommonConditionsUseCase.getMostCommonConditions().size());
+    void getMostCommonCondition_ExistsAccidents_ReturnCollectionAnd200(){
+        ResponseEntity response=mostCommonConditionController.getMostCommonCondition();
+        Assertions.assertEquals(48,((ArrayList<CommonConditionDTO>)response.getBody()).size());
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
 }

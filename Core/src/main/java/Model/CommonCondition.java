@@ -14,4 +14,12 @@ public class CommonCondition {
     public static CommonCondition factory(Map<String, Object> civilTwilight, Integer conteo) {
         return new CommonCondition(civilTwilight, conteo);
     }
+
+    public Map<String, Object> getCivilTwilight() {
+        return civilTwilight;
+    }
+
+    public Integer getConteo() {
+        return conteo;
+    }
 }
