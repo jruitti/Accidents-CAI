@@ -49,7 +49,7 @@ class MongoAdapterPersistenceIntegrationTests {
         float radiusInKm= 10;
         AccidentsInRadiusUseCase accidentsInRadiusUseCase = new AccidentsInRadiusUseCase(accidentsInRadiusRepository);
         ArrayList<Accident> retorno = (ArrayList<Accident>) accidentsInRadiusUseCase.getAccidentsInRadius(longitude,latitude,radiusInKm);
-        Assertions.assertEquals(248, retorno.size());
+        Assertions.assertEquals(535, retorno.size());
     }
 
 }
