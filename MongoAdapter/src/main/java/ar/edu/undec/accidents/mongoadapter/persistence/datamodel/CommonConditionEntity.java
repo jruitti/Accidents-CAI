@@ -1,11 +1,9 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.datamodel;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Map;
 
-@Document(collection = "accidentes")
 public class CommonConditionEntity {
 
     @Id

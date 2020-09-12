@@ -1,5 +1,6 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.datamodel;
 
+import ar.edu.undec.accidents.mongoadapter.controller.config.MongoCollection;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 
-@Document(collection = "accidentes")
+@Document(collection = MongoCollection.collectionName)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccidentEntity {
 
