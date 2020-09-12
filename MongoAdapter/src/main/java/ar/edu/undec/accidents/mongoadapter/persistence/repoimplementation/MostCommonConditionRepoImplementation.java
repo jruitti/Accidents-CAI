@@ -1,5 +1,6 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.repoimplementation;
 
+import ar.edu.undec.accidents.mongoadapter.controller.config.MongoCollection;
 import ar.edu.undec.accidents.mongoadapter.persistence.datamodel.CommonConditionEntity;
 import ar.edu.undec.accidents.mongoadapter.persistence.mapper.CommonConditionDataMapper;
 import model.CommonCondition;
@@ -32,7 +33,7 @@ public class MostCommonConditionRepoImplementation implements IMostCommonConditi
         GroupOperation groupOperation = group("Civil_Twilight","Wind_Direction").count().as("conteo");
         SortOperation sortOperation = sort(Sort.Direction.DESC, "conteo");
         Aggregation aggregation = newAggregation(matchOperation,groupOperation,sortOperation);
-        AggregationResults<CommonConditionEntity> result = mongoTemplate.aggregate(aggregation,"accidentes",CommonConditionEntity.class);
+        AggregationResults<CommonConditionEntity> result = mongoTemplate.aggregate(aggregation, MongoCollection.collectionName,CommonConditionEntity.class);
         return result.getMappedResults().stream().map(CommonConditionDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
     }
 }

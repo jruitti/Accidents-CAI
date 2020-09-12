@@ -1,13 +1,15 @@
 package ar.edu.undec.accidents.mongoadapter.persistence.datamodel;
 
+import ar.edu.undec.accidents.mongoadapter.controller.config.MongoCollection;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 
-@Document(collection = "accidentes")
+@Document(collection = MongoCollection.collectionName)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccidentEntity {
 
@@ -113,6 +115,10 @@ public class AccidentEntity {
     private String nauticalTwilight;
     @Field("Description")
     private String description;
+    @Field("start_location")
+    private Point startLocation;
+    @Field("end_location")
+    private Point endLocation;
 
 
     public String getId() {
@@ -505,5 +511,21 @@ public class AccidentEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Point getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(Point startLocation) {
+        this.startLocation = startLocation;
+    }
+
+    public Point getEndLocation() {
+        return endLocation;
+    }
+
+    public void setEndLocation(Point endLocation) {
+        this.endLocation = endLocation;
     }
 }

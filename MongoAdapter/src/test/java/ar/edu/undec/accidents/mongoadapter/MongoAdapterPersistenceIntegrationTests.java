@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import repository.IAccidentsBetweenDatesRepository;
+import repository.IAccidentsInRadiusRepository;
+import repository.IAverageDistanceRepository;
 import repository.IMostCommonConditionsRepository;
 import usecase.AccidentsBetweenDatesUseCase;
+import usecase.AccidentsInRadiusUseCase;
+import usecase.AverageDistanceUseCase;
 import usecase.MostCommonConditionsUseCase;
 
 import java.time.LocalDateTime;
@@ -20,6 +24,10 @@ class MongoAdapterPersistenceIntegrationTests {
     IMostCommonConditionsRepository mostCommonConditionsRepository;
     @Autowired
     IAccidentsBetweenDatesRepository accidentsBetweenDatesRepository;
+    @Autowired
+    IAccidentsInRadiusRepository accidentsInRadiusRepository;
+    @Autowired
+    IAverageDistanceRepository averageDistanceRepository;
 
 
     @Test
@@ -36,6 +44,22 @@ class MongoAdapterPersistenceIntegrationTests {
     void getCommonConditions_DataExist_returnCollection() {
         MostCommonConditionsUseCase mostCommonConditionsUseCase = new MostCommonConditionsUseCase(mostCommonConditionsRepository);
         Assertions.assertEquals(48, mostCommonConditionsUseCase.getMostCommonConditions().size());
+    }
+
+    @Test
+    void getAccidentsInRadius_ExistsAccidents_ReturnCollection() {
+        float longitude= -84.058723f;
+        float latitude= 39.865147f;
+        float radiusInKm= 10;
+        AccidentsInRadiusUseCase accidentsInRadiusUseCase = new AccidentsInRadiusUseCase(accidentsInRadiusRepository);
+        ArrayList<Accident> retorno = (ArrayList<Accident>) accidentsInRadiusUseCase.getAccidentsInRadius(longitude,latitude,radiusInKm);
+        Assertions.assertEquals(535, retorno.size());
+    }
+
+    @Test
+    void getAverageDistance_DataExist_returnAverageInFloat() {
+        AverageDistanceUseCase averageDistanceUseCase=new AverageDistanceUseCase(averageDistanceRepository);
+        Assertions.assertEquals(Float.valueOf(1397.06665799254f), averageDistanceUseCase.getAverageDistance());
     }
 
 }
