@@ -10,6 +10,7 @@ import repository.IDangerousPointRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -33,7 +34,7 @@ public class DangerousPointRepoImplementation implements IDangerousPointReposito
         }
 
         System.out.println(aPoints);
-        aPoints.sort((a, b) -> a.getAmount().compareTo(b.getAmount()));
+        aPoints.sort(Comparator.comparing(DangerousPoint::getAmount).reversed());
         return aPoints;
 
     }
