@@ -6,5 +6,5 @@ import java.util.Collection;
 
 public interface IDangerousPointRepository {
 
-    Collection<DangerousPoint> getDangerousPoints();
+    Collection<DangerousPoint> getDangerousPoints(float radiusInKm);
 }

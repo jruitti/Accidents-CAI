@@ -16,7 +16,7 @@ public class DangerousPointUseCase implements IDangerousPointInput {
     }
 
     @Override
-    public Collection<DangerousPoint> getDangerousPoints() {
-        return dangerousPointRepository.getDangerousPoints();
+    public Collection<DangerousPoint> getDangerousPoints(float radiusInKm) {
+        return dangerousPointRepository.getDangerousPoints(radiusInKm);
     }
 }

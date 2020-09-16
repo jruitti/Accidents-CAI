@@ -27,10 +27,11 @@ public class DangerousPointsUseCaseTest {
 
     @Test
     void getDangerousPoint_DataExists_returnCollection(){
+        float radiusInKm= 1;
         DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
-        when(dangerousPointRepository.getDangerousPoints()).thenReturn(new ArrayList<>());
+        when(dangerousPointRepository.getDangerousPoints(radiusInKm)).thenReturn(new ArrayList<>());
 
-        Assertions.assertTrue(!dangerousPointUseCase.getDangerousPoints().isEmpty());
+        Assertions.assertTrue(!dangerousPointUseCase.getDangerousPoints(radiusInKm).isEmpty());
     }
 
 

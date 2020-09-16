@@ -25,4 +25,12 @@ public class DangerousPoint {
     public Integer getAmount() {
         return amount;
     }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
 }
