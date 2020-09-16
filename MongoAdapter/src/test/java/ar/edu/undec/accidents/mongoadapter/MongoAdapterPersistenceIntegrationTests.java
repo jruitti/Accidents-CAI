@@ -61,8 +61,9 @@ class MongoAdapterPersistenceIntegrationTests {
 
     @Test
     void getDangerousPoints_DataExist_ReturnCollection() {
+        float radiusInKm= 1;
         DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
-        Assertions.assertEquals(20, ((List< DangerousPoint>) dangerousPointUseCase.getDangerousPoints()).get(0).getAmount());
+        Assertions.assertEquals(570, ((List< DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
     }
 
 }
