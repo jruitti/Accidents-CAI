@@ -2,10 +2,8 @@ package ar.edu.undec.accidents.mongoadapter;
 
 import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.AccidentDTO;
 import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.CommonConditionDTO;
-import ar.edu.undec.accidents.mongoadapter.controller.service.AccidentsBetweenDatesController;
-import ar.edu.undec.accidents.mongoadapter.controller.service.AccidentsInRadiusController;
-import ar.edu.undec.accidents.mongoadapter.controller.service.AverageDistanceController;
-import ar.edu.undec.accidents.mongoadapter.controller.service.MostCommonConditionController;
+import ar.edu.undec.accidents.mongoadapter.controller.dtomodel.DangerousPointDTO;
+import ar.edu.undec.accidents.mongoadapter.controller.service.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,9 @@ class MongoAdapterControllerIntegrationTests {
 
     @Autowired
     AverageDistanceController averageDistanceController;
+
+    @Autowired
+    DangerousPointController dangerousPointsController;
 
     @Test
     void getAccidentsBetweenDates_ExistsAccidents_ReturnCollectionAnd200(){
@@ -60,6 +61,15 @@ class MongoAdapterControllerIntegrationTests {
     void getAverageDistance_ExistsAccidents_ReturnCollectionAnd200(){
         ResponseEntity response=averageDistanceController.getAverageDistance();
         Assertions.assertEquals(Float.valueOf(1397.06665799254f),response.getBody());
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    void getDangerousPoints_ExistsAccidents_ReturnCollectionOfPoints() {
+        //Test para considerar 100000 accidentes del total de la base de datos
+        float radiusInKm= 1;
+        ResponseEntity response=dangerousPointsController.getDangerousPoints(radiusInKm);
+        Assertions.assertEquals(570,((ArrayList<DangerousPointDTO>)response.getBody()).get(0).getAmount());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
