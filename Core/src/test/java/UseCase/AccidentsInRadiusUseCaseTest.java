@@ -2,12 +2,12 @@ package usecase;
 
 import Mockito.MockitoExtension;
 import model.Accident;
-import repository.IAccidentsBetweenDatesRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import repository.IAccidentsInRadiusRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ import java.util.Collection;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class AccidentsBetweenDatesUseCaseTest {
+public class AccidentsInRadiusUseCaseTest {
 
     @Mock
-    IAccidentsBetweenDatesRepository accidentsBetweenDatesRepository;
+    IAccidentsInRadiusRepository accidentsInRadiusRepository;
 
     @Spy
     Collection<Accident> accidentCollection = factoryAccidents();
@@ -31,11 +31,13 @@ public class AccidentsBetweenDatesUseCaseTest {
     }
 
     @Test
-    void getAccidentsBetweenDates_ExistsAccidentes_ReturnList(){
-        LocalDateTime fromDate=LocalDateTime.of(2016,6,1,0,0,0);
-        LocalDateTime toDate=LocalDateTime.of(2016,6,30,0,0,0);
-        AccidentsBetweenDatesUseCase accidentsBetweenDatesUseCase = new AccidentsBetweenDatesUseCase(accidentsBetweenDatesRepository);
-        when(accidentsBetweenDatesRepository.queryAccidentsBetweenDates(fromDate,toDate)).thenReturn(accidentCollection);
-        Assertions.assertNotEquals(0, accidentsBetweenDatesUseCase.getAccidentsBetweenDates(fromDate,toDate).size());
+    void getAccidentsInRadius_ExistsAccidentes_ReturnList(){
+        float longitude= -84.058723f;
+        float latitude= 39.865147f;
+        float radiusInKm= 10;
+
+        AccidentsInRadiusUseCase accidentsInRadiusUseCase = new AccidentsInRadiusUseCase(accidentsInRadiusRepository);
+        when(accidentsInRadiusRepository.queryAccidentsInRadius(longitude,latitude,radiusInKm)).thenReturn(accidentCollection);
+        Assertions.assertNotEquals(0, accidentsInRadiusUseCase.getAccidentsInRadius(longitude,latitude,radiusInKm).size());
     }
 }

@@ -1,10 +1,10 @@
-package Repository;
+package repository;
 
-import Model.Accident;
+import model.Accident;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 public interface IAccidentsBetweenDatesRepository {
-    Collection<Accident> queryAccidentsBetweenDates(LocalDate fromDate, LocalDate toDate);
+    Collection<Accident> queryAccidentsBetweenDates(LocalDateTime fromDate, LocalDateTime toDate);
 }
