@@ -1,16 +1,10 @@
 package ar.edu.undec.accidents.mongoadapter.controller.config;
 
-import repository.IAccidentsBetweenDatesRepository;
-import repository.IAccidentsInRadiusRepository;
-import repository.IAverageDistanceRepository;
-import repository.IMostCommonConditionsRepository;
-import usecase.AccidentsBetweenDatesUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import usecase.AccidentsInRadiusUseCase;
-import usecase.AverageDistanceUseCase;
-import usecase.MostCommonConditionsUseCase;
+import repository.*;
+import usecase.*;
 
 @Configuration
 public class UseCaseConfig {
@@ -23,6 +17,9 @@ public class UseCaseConfig {
 
     @Autowired
     private IAccidentsInRadiusRepository accidentsInRadiusRepository;
+
+    @Autowired
+    private IDangerousPointRepository dangerousPointRepository;
 
     @Autowired
     private IAverageDistanceRepository averageDistanceRepository;
@@ -45,6 +42,11 @@ public class UseCaseConfig {
     @Bean
     public AverageDistanceUseCase averageDistanceUseCase() {
         return new AverageDistanceUseCase(averageDistanceRepository);
+    }
+
+    @Bean
+    public DangerousPointUseCase dangerousPointUseCase() {
+        return new DangerousPointUseCase(dangerousPointRepository);
     }
 
 }

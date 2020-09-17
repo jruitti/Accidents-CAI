@@ -1,21 +1,17 @@
 package ar.edu.undec.accidents.mongoadapter;
 
 import model.Accident;
+import model.DangerousPoint;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import repository.IAccidentsBetweenDatesRepository;
-import repository.IAccidentsInRadiusRepository;
-import repository.IAverageDistanceRepository;
-import repository.IMostCommonConditionsRepository;
-import usecase.AccidentsBetweenDatesUseCase;
-import usecase.AccidentsInRadiusUseCase;
-import usecase.AverageDistanceUseCase;
-import usecase.MostCommonConditionsUseCase;
+import repository.*;
+import usecase.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class MongoAdapterPersistenceIntegrationTests {
@@ -28,7 +24,8 @@ class MongoAdapterPersistenceIntegrationTests {
     IAccidentsInRadiusRepository accidentsInRadiusRepository;
     @Autowired
     IAverageDistanceRepository averageDistanceRepository;
-
+    @Autowired
+    IDangerousPointRepository dangerousPointRepository;
 
     @Test
     void getAccidentsBetweenDates_ExistsAccidents_ReturnCollection() {
@@ -60,6 +57,13 @@ class MongoAdapterPersistenceIntegrationTests {
     void getAverageDistance_DataExist_returnAverageInFloat() {
         AverageDistanceUseCase averageDistanceUseCase=new AverageDistanceUseCase(averageDistanceRepository);
         Assertions.assertEquals(Float.valueOf(1397.06665799254f), averageDistanceUseCase.getAverageDistance());
+    }
+
+    @Test
+    void getDangerousPoints_DataExist_ReturnCollection() {
+        float radiusInKm= 1;
+        DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
+        Assertions.assertEquals(570, ((List< DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
     }
 
 }

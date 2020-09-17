@@ -31,7 +31,7 @@ public class AccidentsInRadiusRepoImplementation implements IAccidentsInRadiusRe
     public Collection<Accident> queryAccidentsInRadius(float longitude, float latitude, float radiusInKm) {
         BasicQuery basicQuery= new BasicQuery("{start_location: { $geoWithin: { $centerSphere: [ ["+longitude+","+latitude+"], "+radiusInKm/6371 +"] }}})");
 
-        List<AccidentEntity> result= mongoTemplate.find( basicQuery,AccidentEntity.class);
+        List<AccidentEntity> result= mongoTemplate.find(basicQuery,AccidentEntity.class);
 
 
         //List<AccidentEntity> resultado= mongoTemplate.find(,AccidentEntity.class);
