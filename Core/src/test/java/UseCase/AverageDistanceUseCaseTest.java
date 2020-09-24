@@ -19,9 +19,9 @@ public class AverageDistanceUseCaseTest {
     public void getAverageDistance_ExistAccidents_ReturnAverage(){
         AverageDistanceUseCase averageDistanceUseCase=new AverageDistanceUseCase(averageDistanceRepository);
 
-        when(averageDistanceRepository.queryAverageDistance()).thenReturn(100.0f);
+        when(averageDistanceRepository.queryAverageDistance()).thenReturn(100.0d);
 
-        Assertions.assertEquals(100.0f,averageDistanceUseCase.getAverageDistance().floatValue());
+        Assertions.assertEquals(100.0d,averageDistanceUseCase.getAverageDistance().floatValue());
 
 
     }

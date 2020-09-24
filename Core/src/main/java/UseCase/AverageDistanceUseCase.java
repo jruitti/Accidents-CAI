@@ -13,7 +13,7 @@ public class AverageDistanceUseCase implements IAverageDistanceInput {
 
 
     @Override
-    public Float getAverageDistance() {
+    public Double getAverageDistance() {
         return this.averageDistanceRepository.queryAverageDistance();
     }
 }

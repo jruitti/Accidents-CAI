@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import repository.*;
 import usecase.*;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ class MongoAdapterPersistenceIntegrationTests {
     @Test
     void getAverageDistance_DataExist_returnAverageInFloat() {
         AverageDistanceUseCase averageDistanceUseCase=new AverageDistanceUseCase(averageDistanceRepository);
-        Assertions.assertEquals(Float.valueOf(1397.06665799254f), averageDistanceUseCase.getAverageDistance());
+        Assertions.assertEquals("0,985", new DecimalFormat("#.###").format(averageDistanceUseCase.getAverageDistance()));
     }
 
     @Test

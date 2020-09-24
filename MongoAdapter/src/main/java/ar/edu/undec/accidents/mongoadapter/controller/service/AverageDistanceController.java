@@ -16,7 +16,7 @@ public class AverageDistanceController {
     public ResponseEntity getAverageDistance() {
 
         ResponseEntity<?> response=null;
-        Float result= averageDistanceInput.getAverageDistance();
+        Double result= averageDistanceInput.getAverageDistance();
         response=ResponseEntity.ok(result);
         return response;
     }
