@@ -22,4 +22,8 @@ public class DangerousPointEntity {
     public Point getStartLocation() {
         return startLocation;
     }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

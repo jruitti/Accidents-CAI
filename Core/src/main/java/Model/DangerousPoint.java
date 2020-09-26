@@ -1,19 +1,20 @@
 package model;
 
+
 public class DangerousPoint {
 
 
-    private Float longitude;
-    private Float latitude;
+    private Double longitude;
+    private Double latitude;
     private Integer amount;
 
-    public DangerousPoint(Float longitude, Float latitude, Integer amount) {
+    public DangerousPoint(Double longitude, Double latitude, Integer amount) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.amount = amount;
     }
 
-    public static DangerousPoint factory(Float longitude, Float latitude, Integer amount) {
+    public static DangerousPoint factory(Double longitude, Double latitude, Integer amount) {
         return new DangerousPoint(longitude,latitude,amount);
     }
 
@@ -26,11 +27,11 @@ public class DangerousPoint {
         return amount;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 }

@@ -5,26 +5,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DangerousPointDTO {
 
     @JsonProperty("longitude")
-    private Float longitude;
+    private Double longitude;
     @JsonProperty("latitude")
-    private Float latitude;
+    private Double latitude;
     @JsonProperty("amount")
     private Integer amount;
 
     public DangerousPointDTO(
-            @JsonProperty("longitude") Float longitude,
-            @JsonProperty("latitude") Float latitude,
+            @JsonProperty("longitude") Double longitude,
+            @JsonProperty("latitude") Double latitude,
             @JsonProperty("amount") Integer amount) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.amount = amount;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
