@@ -2,6 +2,7 @@ package usecase;
 
 import Mockito.MockitoExtension;
 import model.Accident;
+import model.DangerousPoint;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class DangerousPointsUseCaseTest {
 
     @Spy
-    Collection<Accident> dangerousPointCollection=factoryPoints();
+    Collection<DangerousPoint> dangerousPointCollection=factoryPoints();
 
     @Mock
     IDangerousPointRepository dangerousPointRepository;
@@ -29,17 +30,17 @@ public class DangerousPointsUseCaseTest {
     void getDangerousPoint_DataExists_returnCollection(){
         float radiusInKm= 1;
         DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
-        when(dangerousPointRepository.getDangerousPoints(radiusInKm)).thenReturn(new ArrayList<>());
+        when(dangerousPointRepository.getDangerousPoints(radiusInKm)).thenReturn(factoryPoints());
 
         Assertions.assertTrue(!dangerousPointUseCase.getDangerousPoints(radiusInKm).isEmpty());
     }
 
 
 
-    private Collection<Accident> factoryPoints() {
-        Accident anAccident=Accident.emptyfactory("123123123", "asdasdasd", null, LocalDateTime.now());
-        Collection<Accident> result=new ArrayList<Accident>();
-        result.add(anAccident);
+    private Collection<DangerousPoint> factoryPoints() {
+        DangerousPoint aPoint=DangerousPoint.factory(-12344d, 12344.6d, null);
+        Collection<DangerousPoint> result=new ArrayList<DangerousPoint>();
+        result.add(aPoint);
         return result;
     }
 }
