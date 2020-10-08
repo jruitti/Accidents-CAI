@@ -10,4 +10,5 @@ public class ElasticAdapterApplication {
         SpringApplication.run(ElasticAdapterApplication.class, args);
     }
 
+
 }
