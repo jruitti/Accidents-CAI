@@ -22,7 +22,7 @@ public class AccidentsBetweenDatesRepoImplementation implements IAccidentsBetwee
 
     @Override
     public Collection<Accident> queryAccidentsBetweenDates(LocalDateTime fromDate, LocalDateTime toDate) {
-        List<AccidentEntity> retorno=accidentsBetweenDatesCRUD.findByAirportCodeEquals("KFFO");
+        List<AccidentEntity> retorno=accidentsBetweenDatesCRUD.findByStartTimeBetween(fromDate,toDate);
         System.out.println(retorno.size());
 
         return retorno.stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));

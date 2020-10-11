@@ -1,11 +1,14 @@
 package ar.edu.undec.elasticadapter.persistence.datamodel;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
+import java.time.LocalDateTime;
 
-@Document(indexName="accidentes_db")
+
+@Document(indexName = "dbaccidents")
 public class AccidentEntity {
 
     public AccidentEntity() {
@@ -20,9 +23,9 @@ public class AccidentEntity {
     @Field("Severity")
     private Integer severity;
     @Field("Start_Time")
-    private String startTime;
+    private LocalDateTime startTime;
     @Field("End_Time")
-    private String endTime;
+    private LocalDateTime endTime;
     @Field("Weather_Timestamp")
     private String weatherTimestamp;
     @Field("Start_Lat")
@@ -126,11 +129,11 @@ public class AccidentEntity {
         return severity;
     }
 
-    public String getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public String getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
