@@ -15,14 +15,14 @@ public class UseCaseConfig {
 //    @Autowired
 //    private IMostCommonConditionsRepository mostCommonConditionsRepository;
 //
-//    @Autowired
-//    private IAccidentsInRadiusRepository accidentsInRadiusRepository;
-//
+    @Autowired
+    private IAccidentsInRadiusRepository accidentsInRadiusRepository;
+
 //    @Autowired
 //    private IDangerousPointRepository dangerousPointRepository;
 //
-//    @Autowired
-//    private IAverageDistanceRepository averageDistanceRepository;
+    @Autowired
+    private IAverageDistanceRepository averageDistanceRepository;
 
     @Bean
     public AccidentsBetweenDatesUseCase accidentsBetweenDatesUseCase() {
@@ -34,15 +34,15 @@ public class UseCaseConfig {
 //        return new MostCommonConditionsUseCase(mostCommonConditionsRepository);
 //    }
 //
-//    @Bean
-//    public AccidentsInRadiusUseCase accidentsInRadiusUseCase() {
-//        return new AccidentsInRadiusUseCase(accidentsInRadiusRepository);
-//    }
-//
-//    @Bean
-//    public AverageDistanceUseCase averageDistanceUseCase() {
-//        return new AverageDistanceUseCase(averageDistanceRepository);
-//    }
+    @Bean
+    public AccidentsInRadiusUseCase accidentsInRadiusUseCase() {
+        return new AccidentsInRadiusUseCase(accidentsInRadiusRepository);
+    }
+
+    @Bean
+    public AverageDistanceUseCase averageDistanceUseCase() {
+        return new AverageDistanceUseCase(averageDistanceRepository);
+    }
 //
 //    @Bean
 //    public DangerousPointUseCase dangerousPointUseCase() {
