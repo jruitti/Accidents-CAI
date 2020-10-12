@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class AccidentsInRadiusRepoImplementation implements IAccidentsInRadiusRepository {
@@ -24,9 +25,8 @@ public class AccidentsInRadiusRepoImplementation implements IAccidentsInRadiusRe
     public Collection<Accident> queryAccidentsInRadius(float longitude, float latitude, float radiusInKm) {
 
         String coordinates= latitude +","+ longitude;
-        List<AccidentEntity> retrieve=accidentsInRadiusCRUD.findInRadius(coordinates,radiusInKm);
-        System.out.println(retrieve.size());
+        Stream<AccidentEntity> retrieve=accidentsInRadiusCRUD.findInRadius(coordinates,radiusInKm);
 
-        return retrieve.stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
+        return retrieve.map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
     }
 }
