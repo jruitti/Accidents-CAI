@@ -33,10 +33,10 @@ class MongoAdapterControllerIntegrationTests {
 
     @Test
     void getAccidentsBetweenDates_ExistsAccidents_ReturnCollectionAnd200(){
-        LocalDateTime fromDate=LocalDateTime.of(2016,1,1,0,0,0);
-        LocalDateTime toDate=LocalDateTime.of(2016,12,31,10,0,0);
+        LocalDateTime fromDate = LocalDateTime.of(2016, 1, 31, 0, 0, 0);
+        LocalDateTime toDate = LocalDateTime.of(2016, 3, 1, 23, 59, 59);
         ResponseEntity response=accidentsBetweenDatesController.getAccidentsBetweenDates(fromDate,toDate);
-        Assertions.assertEquals(410600,((ArrayList<AccidentDTO>)response.getBody()).size());
+        Assertions.assertEquals(1040,((ArrayList<AccidentDTO>)response.getBody()).size());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 

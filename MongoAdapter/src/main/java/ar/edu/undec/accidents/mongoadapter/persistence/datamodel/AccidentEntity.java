@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDateTime;
+
 
 @Document(collection = MongoCollection.collectionName)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -26,11 +28,11 @@ public class AccidentEntity {
     private Integer severity;
     @Field("Start_Time")
     @Indexed
-    private String startTime;
+    private LocalDateTime startTime;
     @Field("End_Time")
-    private String endTime;
+    private LocalDateTime endTime;
     @Field("Weather_Timestamp")
-    private String weatherTimestamp;
+    private LocalDateTime weatherTimestamp;
     @Field("Start_Lat")
     private Float startLat;
     @Field("Start_Lng")
@@ -153,27 +155,27 @@ public class AccidentEntity {
         this.severity = severity;
     }
 
-    public String getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
-    public String getWeatherTimestamp() {
+    public LocalDateTime getWeatherTimestamp() {
         return weatherTimestamp;
     }
 
-    public void setWeatherTimestamp(String weatherTimestamp) {
+    public void setWeatherTimestamp(LocalDateTime weatherTimestamp) {
         this.weatherTimestamp = weatherTimestamp;
     }
 
