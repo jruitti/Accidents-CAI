@@ -19,9 +19,6 @@ public class DangerousPointEntity {
     private Double startLng;
     @Field("amount")
     private Integer amount;
-    @Field("Civil_Twilight")
-    private String civilTwilight;
-
 
     public DangerousPointEntity() {
     }
