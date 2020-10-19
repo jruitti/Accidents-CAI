@@ -26,7 +26,7 @@ public class AccidentsInRadiusUseCaseTest {
 
     private Collection<Accident> factoryAccidents() {
         Collection<Accident> accidentsList =new ArrayList<Accident>();
-        accidentsList.add(Accident.emptyfactory("123123123", "asdasdasd", null, LocalDateTime.now()));
+        accidentsList.add(Accident.factory(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, false, false, false, false, false, false, false, false, false, false, false, false, null, null, null, null));
         return accidentsList;
     }
 

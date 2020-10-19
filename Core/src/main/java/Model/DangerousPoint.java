@@ -18,10 +18,7 @@ public class DangerousPoint {
         return new DangerousPoint(longitude,latitude,amount);
     }
 
-    @Override
-    public String toString() {
-        return "{\"type\": \"Feature\",\"properties\": {},\"geometry\": {\"type\": \"Point\",\"coordinates\": ["+ longitude+", "+latitude+" ] } }, --"+amount;
-    }
+
 
     public Integer getAmount() {
         return amount;

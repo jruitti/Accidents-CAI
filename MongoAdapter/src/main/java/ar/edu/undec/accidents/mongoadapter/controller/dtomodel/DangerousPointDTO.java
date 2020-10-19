@@ -20,15 +20,12 @@ public class DangerousPointDTO {
         this.amount = amount;
     }
 
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
     public Integer getAmount() {
         return amount;
+    }
+
+    @Override
+    public String toString() {
+        return "{\"type\": \"Feature\",\"properties\": {},\"geometry\": {\"type\": \"Point\",\"coordinates\": ["+ longitude+", "+latitude+" ] } }, --"+amount;
     }
 }
