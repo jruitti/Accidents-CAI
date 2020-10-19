@@ -1,18 +1,24 @@
 package ar.edu.undec.elasticadapter;
 
 import model.Accident;
+import model.DangerousPoint;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import repository.IAccidentsBetweenDatesRepository;
 import repository.IAverageDistanceRepository;
+import repository.IDangerousPointRepository;
+import repository.IMostCommonConditionsRepository;
 import usecase.AccidentsBetweenDatesUseCase;
 import usecase.AverageDistanceUseCase;
+import usecase.DangerousPointUseCase;
+import usecase.MostCommonConditionsUseCase;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 public class ElasticAdapterPersistenceIntegrationTests {
@@ -21,7 +27,13 @@ public class ElasticAdapterPersistenceIntegrationTests {
     IAccidentsBetweenDatesRepository accidentsBetweenDatesRepository;
 
     @Autowired
+    IMostCommonConditionsRepository mostCommonConditionsRepository;
+
+    @Autowired
     IAverageDistanceRepository averageDistanceRepository;
+
+    @Autowired
+    IDangerousPointRepository dangerousPointRepository;
 
 
     @Test
@@ -33,10 +45,22 @@ public class ElasticAdapterPersistenceIntegrationTests {
         Assertions.assertEquals(595, retorno.size());
     }
 
+    @Test
+    void getCommonConditions_DataExist_returnCollection() {
+        MostCommonConditionsUseCase mostCommonConditionsUseCase = new MostCommonConditionsUseCase(mostCommonConditionsRepository);
+        Assertions.assertEquals(48, mostCommonConditionsUseCase.getMostCommonConditions().size());
+    }
 
     @Test
     void getAverageDistance_DataExist_returnAverageInFloat() {
         AverageDistanceUseCase averageDistanceUseCase=new AverageDistanceUseCase(averageDistanceRepository);
         Assertions.assertEquals("0,985", new DecimalFormat("#.###").format(averageDistanceUseCase.getAverageDistance()));
+    }
+
+    @Test
+    void getDangerousPoints_DataExist_ReturnCollection() {
+        float radiusInKm= 1;
+        DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
+        Assertions.assertEquals(570, ((List<DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
     }
 }
