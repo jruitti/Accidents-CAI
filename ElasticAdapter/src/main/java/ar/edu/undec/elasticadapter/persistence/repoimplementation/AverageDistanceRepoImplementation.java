@@ -35,15 +35,6 @@ public class AverageDistanceRepoImplementation implements IAverageDistanceReposi
 
         return conteo ;
 
-//        Double averageDouble=retrieved.parallelStream().map(
-//                anAccident->{
-//                    anAccident.setDistance(Double.valueOf(distance(anAccident.getStartLocation().getX(), anAccident.getStartLocation().getY(), anAccident.getEndLocation().getX(), anAccident.getEndLocation().getY(),"K")));
-//                    return anAccident;
-//                })
-//                .mapToDouble(AverageDistanceEntity::getDistance)
-//                .average()
-//                .orElse(Double.valueOf(0));
-
     }
 
     private static double distance(double longitude1, double latitude1, double longitude2, double latitude2, String unit) {

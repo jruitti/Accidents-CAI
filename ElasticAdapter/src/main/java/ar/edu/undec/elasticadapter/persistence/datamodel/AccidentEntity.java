@@ -1,5 +1,6 @@
 package ar.edu.undec.elasticadapter.persistence.datamodel;
 
+import ar.edu.undec.elasticadapter.config.ElasticIndexName;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -8,7 +9,7 @@ import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 import java.time.LocalDateTime;
 
 
-@Document(indexName = "dbaccidents")
+@Document(indexName = ElasticIndexName.indexName)
 public class AccidentEntity {
 
     public AccidentEntity() {
@@ -307,6 +308,11 @@ public class AccidentEntity {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getStartCoordinates()
+    {
+        return this.startLat+", "+this.startLng;
     }
 
 }
