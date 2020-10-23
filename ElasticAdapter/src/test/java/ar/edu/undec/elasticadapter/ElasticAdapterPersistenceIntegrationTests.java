@@ -59,8 +59,9 @@ public class ElasticAdapterPersistenceIntegrationTests {
 
     @Test
     void getDangerousPoints_DataExist_ReturnCollection() {
+        //Test para considerar 10000 accidentes del total de la base de datos
         float radiusInKm= 1;
         DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
-        Assertions.assertEquals(570, ((List<DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
+        Assertions.assertEquals(2801, ((List<DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
     }
 }

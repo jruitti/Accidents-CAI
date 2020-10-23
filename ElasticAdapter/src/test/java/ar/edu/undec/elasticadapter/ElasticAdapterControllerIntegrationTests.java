@@ -66,9 +66,10 @@ class ElasticAdapterControllerIntegrationTests {
 
     @Test
     void getDangerousPoints_ExistsAccidents_ReturnCollectionOfPoints() {
+        //Test para considerar 10000 accidentes del total de la base de datos
         float radiusInKm= 1;
         ResponseEntity response=dangerousPointsController.getDangerousPoints(radiusInKm);
-        Assertions.assertEquals(570,((ArrayList<DangerousPointDTO>)response.getBody()).get(0).getAmount());
+        Assertions.assertEquals(2801,((ArrayList<DangerousPointDTO>)response.getBody()).get(0).getAmount());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 

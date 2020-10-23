@@ -10,6 +10,8 @@ import repository.IDangerousPointRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -31,11 +33,13 @@ public class DangerousPointRepoImplementation implements IDangerousPointReposito
 
     @Override
     public Collection<DangerousPoint> getDangerousPoints(float radiusInKm) {
-        Collection<DangerousPoint> dangerousPointCollection = dangerousPointCRUD.findTop1000By().map(acc -> {
+        List<DangerousPoint> dangerousPointCollection = dangerousPointCRUD.findTop10000By().map(acc -> {
             float count = (int) accidentsInRadiusCRUD.findInRadius(acc.getStartLocation(), radiusInKm).count();
-            System.out.println(acc.getStartLocation() + " " + count);
             return DangerousPoint.factory(acc.getStartLng(), acc.getStartLat(), (int)count);
         }).collect(Collectors.toCollection(ArrayList::new));
+
+        dangerousPointCollection.sort(Comparator.comparing(DangerousPoint::getAmount).reversed());
+        System.out.println(dangerousPointCollection.get(0));
         return dangerousPointCollection;
 
     }

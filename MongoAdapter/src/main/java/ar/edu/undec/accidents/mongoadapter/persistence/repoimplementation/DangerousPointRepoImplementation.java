@@ -25,7 +25,6 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 @Service
 public class DangerousPointRepoImplementation implements IDangerousPointRepository {
 
-
     private final MongoTemplate mongoTemplate;
 
     public DangerousPointRepoImplementation(MongoTemplate mongoTemplate) {
@@ -34,7 +33,9 @@ public class DangerousPointRepoImplementation implements IDangerousPointReposito
 
     @Override
     public Collection<DangerousPoint> getDangerousPoints(float radiusInKm) {
-        return generateReverseSortedDangerousPointList(getListOfCoordinates(), radiusInKm);
+        final List<DangerousPoint> dangerousPoints = generateReverseSortedDangerousPointList(getListOfCoordinates(), radiusInKm);
+        dangerousPoints.forEach(System.out::println);
+        return dangerousPoints;
     }
 
     private List<DangerousPoint> generateReverseSortedDangerousPointList(AggregationResults<DangerousPointEntity> distinctCoordinates, float radiusInKm) {
@@ -47,7 +48,7 @@ public class DangerousPointRepoImplementation implements IDangerousPointReposito
 
     private AggregationResults<DangerousPointEntity> getListOfCoordinates() {
         GroupOperation groupOperation = group("start_location").first("start_location").as("start_location");
-        LimitOperation limitOperation= limit(100000);
+        LimitOperation limitOperation = limit(10000);
         Aggregation aggregation = newAggregation(limitOperation, groupOperation).withOptions(newAggregationOptions().allowDiskUse(true).build());
         AggregationResults<DangerousPointEntity> distinctCoordinates = mongoTemplate.aggregate(aggregation, MongoCollection.collectionName, DangerousPointEntity.class);
         return distinctCoordinates;

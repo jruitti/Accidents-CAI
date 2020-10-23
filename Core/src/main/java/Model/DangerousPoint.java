@@ -31,4 +31,13 @@ public class DangerousPoint {
     public Double getLatitude() {
         return latitude;
     }
+
+    @Override
+    public String toString() {
+        return "DangerousPoint{" +
+                "longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", amount=" + amount +
+                '}';
+    }
 }

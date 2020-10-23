@@ -9,7 +9,9 @@ import java.util.stream.Stream;
 @Repository
 public interface IDangerousPointCRUD extends ElasticsearchRepository<DangerousPointEntity, String> {
 
-    Stream<DangerousPointEntity> findTop1000By();
+    Stream<DangerousPointEntity> findTop10000By();
+
+    Stream<DangerousPointEntity> findDistinctBy();
 
 
 }
