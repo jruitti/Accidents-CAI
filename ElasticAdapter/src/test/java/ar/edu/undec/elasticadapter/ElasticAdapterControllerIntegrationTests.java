@@ -44,7 +44,7 @@ class ElasticAdapterControllerIntegrationTests {
     @Test
     void getMostCommonCondition_ExistsAccidents_ReturnCollectionAnd200(){
         ResponseEntity response=mostCommonConditionController.getMostCommonCondition();
-        Assertions.assertEquals(2,((ArrayList<CommonConditionDTO>)response.getBody()).size());
+        Assertions.assertEquals(48,((ArrayList<CommonConditionDTO>)response.getBody()).size());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 

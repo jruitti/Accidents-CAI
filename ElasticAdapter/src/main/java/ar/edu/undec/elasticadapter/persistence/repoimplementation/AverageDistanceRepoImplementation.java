@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import repository.IAverageDistanceRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository
@@ -33,7 +29,7 @@ public class AverageDistanceRepoImplementation implements IAverageDistanceReposi
         }).average()
         .orElse(Double.valueOf(0));
 
-        return conteo ;
+        return conteo;
 
     }
 

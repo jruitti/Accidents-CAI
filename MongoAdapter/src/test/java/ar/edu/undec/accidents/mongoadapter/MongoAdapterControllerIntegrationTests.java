@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -60,7 +61,8 @@ class MongoAdapterControllerIntegrationTests {
     @Test
     void getAverageDistance_ExistsAccidents_ReturnCollectionAnd200(){
         ResponseEntity response=averageDistanceController.getAverageDistance();
-        Assertions.assertEquals(Float.valueOf(1397.06665799254f),response.getBody());
+        Assertions.assertEquals("0,985", new DecimalFormat("#.###").format(response.getBody()));
+        //Assertions.assertEquals(Float.valueOf(1397.06665799254f),response.getBody());
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 

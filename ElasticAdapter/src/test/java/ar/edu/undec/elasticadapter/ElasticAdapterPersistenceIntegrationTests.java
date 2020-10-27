@@ -6,14 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import repository.IAccidentsBetweenDatesRepository;
-import repository.IAverageDistanceRepository;
-import repository.IDangerousPointRepository;
-import repository.IMostCommonConditionsRepository;
-import usecase.AccidentsBetweenDatesUseCase;
-import usecase.AverageDistanceUseCase;
-import usecase.DangerousPointUseCase;
-import usecase.MostCommonConditionsUseCase;
+import repository.*;
+import usecase.*;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
@@ -28,6 +22,8 @@ public class ElasticAdapterPersistenceIntegrationTests {
 
     @Autowired
     IMostCommonConditionsRepository mostCommonConditionsRepository;
+    @Autowired
+    IAccidentsInRadiusRepository accidentsInRadiusRepository;
 
     @Autowired
     IAverageDistanceRepository averageDistanceRepository;
@@ -49,6 +45,16 @@ public class ElasticAdapterPersistenceIntegrationTests {
     void getCommonConditions_DataExist_returnCollection() {
         MostCommonConditionsUseCase mostCommonConditionsUseCase = new MostCommonConditionsUseCase(mostCommonConditionsRepository);
         Assertions.assertEquals(48, mostCommonConditionsUseCase.getMostCommonConditions().size());
+    }
+
+    @Test
+    void getAccidentsInRadius_ExistsAccidents_ReturnCollection() {
+        float longitude= -84.058723f;
+        float latitude= 39.865147f;
+        float radiusInKm= 10;
+        AccidentsInRadiusUseCase accidentsInRadiusUseCase = new AccidentsInRadiusUseCase(accidentsInRadiusRepository);
+        ArrayList<Accident> retorno = (ArrayList<Accident>) accidentsInRadiusUseCase.getAccidentsInRadius(longitude,latitude,radiusInKm);
+        Assertions.assertEquals(521, retorno.size());
     }
 
     @Test
