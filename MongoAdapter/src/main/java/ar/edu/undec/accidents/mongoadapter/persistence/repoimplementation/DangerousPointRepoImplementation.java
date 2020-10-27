@@ -7,11 +7,13 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.GroupOperation;
+import org.springframework.data.mongodb.core.aggregation.LimitOperation;
 import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StopWatch;
 import repository.IDangerousPointRepository;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -23,7 +25,6 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 @Service
 public class DangerousPointRepoImplementation implements IDangerousPointRepository {
 
-
     private final MongoTemplate mongoTemplate;
 
     public DangerousPointRepoImplementation(MongoTemplate mongoTemplate) {
@@ -32,49 +33,33 @@ public class DangerousPointRepoImplementation implements IDangerousPointReposito
 
     @Override
     public Collection<DangerousPoint> getDangerousPoints(float radiusInKm) {
+        final List<DangerousPoint> dangerousPoints = generateReverseSortedDangerousPointList(getListOfCoordinates(), radiusInKm);
+        dangerousPoints.forEach(System.out::println);
+        return dangerousPoints;
+    }
 
-        GroupOperation groupOperation = group("start_location").first("start_location").as("start_location");
-        Aggregation aggregation = newAggregation(groupOperation).withOptions(newAggregationOptions().allowDiskUse(true).build());
-        StopWatch watch = new StopWatch();
-        watch.start("getAllCoordinatesDistinct");
-        AggregationResults<DangerousPointEntity> distinctCoordinates = mongoTemplate.aggregate(aggregation, MongoCollection.collectionName, DangerousPointEntity.class);
-        watch.stop();
-
-        watch.start("retrieve con cuenta");
+    private List<DangerousPoint> generateReverseSortedDangerousPointList(AggregationResults<DangerousPointEntity> distinctCoordinates, float radiusInKm) {
         List<DangerousPoint> dangerousPointsList = distinctCoordinates.getMappedResults().parallelStream().map(accident -> {
-            BasicQuery queryConCuenta = new BasicQuery("{start_location: { $geoWithin: { $centerSphere: [ [" + accident.getStartLocation().getX() + "," + accident.getStartLocation().getY() + "], " + Math.round(radiusInKm / 6371) + "] }}})");
-            return DangerousPoint.factory(accident.getStartLocation().getX(), accident.getStartLocation().getY(), (int) mongoTemplate.count(queryConCuenta, DangerousPointEntity.class));
-        }).collect(Collectors.toCollection(ArrayList::new));
-        watch.stop();
-//
-//        watch.start("retrieve con mapeo");
-//        List<DangerousPoint> dangerousPointsList = distinctCoordinates.getMappedResults().parallelStream().map(accident -> {
-//            BasicQuery queryConMapeo = new BasicQuery("{start_location: { $geoWithin: { $centerSphere: [ [" + accident.getStartLocation().getX() + "," + accident.getStartLocation().getY() + "], " + Math.round(radiusInKm / 6371) + "] }}})");
-//            List<DangerousPointEntity> accidentsInRadius = mongoTemplate.find(queryConMapeo, DangerousPointEntity.class);
-//            return DangerousPoint.factory(accident.getStartLocation().getX(), accident.getStartLocation().getY(), accidentsInRadius.size());
-//        }).collect(Collectors.toCollection(ArrayList::new));
-//        watch.stop();
-
-
-        watch.start("sort");
-        dangerousPointsList.sort(Comparator.comparing(DangerousPoint::getAmount).reversed());
-        watch.stop();
-        System.out.println(watch.prettyPrint());
-        System.out.println(dangerousPointsList.get(0));
-        System.out.println(dangerousPointsList.get(1));
-        System.out.println(dangerousPointsList.get(2));
-        System.out.println(dangerousPointsList.get(3));
-        System.out.println(dangerousPointsList.get(4));
+            BasicQuery accidentInRadius = new BasicQuery("{start_location: { $geoWithin: { $centerSphere: [ [" + accident.getStartLocation().getX() + "," + accident.getStartLocation().getY() + "], " + convertToRadiansInString(radiusInKm) + "] }}})");
+            return DangerousPoint.factory(accident.getStartLocation().getX(), accident.getStartLocation().getY(), (int) mongoTemplate.count(accidentInRadius, DangerousPointEntity.class));
+        }).sorted(Comparator.comparing(DangerousPoint::getAmount).reversed()).collect(Collectors.toCollection(ArrayList::new));
         return dangerousPointsList;
+    }
+
+    private AggregationResults<DangerousPointEntity> getListOfCoordinates() {
+        GroupOperation groupOperation = group("start_location").first("start_location").as("start_location");
+        LimitOperation limitOperation = limit(10000);
+        Aggregation aggregation = newAggregation(limitOperation, groupOperation).withOptions(newAggregationOptions().allowDiskUse(true).build());
+        AggregationResults<DangerousPointEntity> distinctCoordinates = mongoTemplate.aggregate(aggregation, MongoCollection.collectionName, DangerousPointEntity.class);
+        return distinctCoordinates;
+    }
 
 
-//        dangerousPointsList=accidentsInRadius.stream()
-//                .map(anAccident->DangerousPoint.factory(anAccident.getLongitude(),anAccident.getLatitude(),anAccident.getAmount()))
-//                .collect(Collectors.toCollection(ArrayList::new));
-//        mongoTemplate.mapReduce(MongoCollection.collectionName,carMap,carReduce,DangerousPointEntity.class).forEach(
-//                System.out::println
-//        );
-//        String carReduce = "function (key,acc){return acc}";
-//        String carMap = "function(){emit(this._id,{latitude:this.Start_Lat,longitude:this.Start_Lng,amount:1})}";
+    private String convertToRadiansInString(float radiusInKm) {
+        DecimalFormat tenDecimalNumber = new DecimalFormat("#.###########");
+        DecimalFormatSymbols decimalFormatSymbols = DecimalFormatSymbols.getInstance();
+        decimalFormatSymbols.setDecimalSeparator('.');
+        tenDecimalNumber.setDecimalFormatSymbols(decimalFormatSymbols);
+        return tenDecimalNumber.format(radiusInKm / 6371);
     }
 }

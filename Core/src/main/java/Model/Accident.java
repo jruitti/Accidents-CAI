@@ -4,31 +4,14 @@ import java.time.LocalDateTime;
 
 public class Accident {
 
-    //pruebas. Luego se borra
-    public Accident(String id, String source, Float humidity, LocalDateTime startTime) {
-        this.id = id;
-        this.source = source;
-        this.humidity = humidity;
-        this.startTime = startTime;
-    }
 
     @Override
     public String toString() {
         return this.id + " " + this.source + " " + this.humidity;
     }
 
-    public static Accident emptyfactory(String id, String source, Float humidity, LocalDateTime startTime) {
-        return new Accident(id, source, humidity, startTime);
-    }
-    //fin Pruebas
-
     public static Accident factory(String id, String source, Float tmc, Integer severity, LocalDateTime startTime, LocalDateTime endTime, Float startLat, Float startLng, Float endLat, Float endLng, Float distance, String description, Float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airport_Code, LocalDateTime weatherTimestamp, Float temperature, Float windChill, Float humidity, Float pressure, Float visibility, String windDirection, Float windSpeed, Float precipitation, String weatherCondition, boolean amenity, boolean bump, boolean crossing, boolean giveWay, boolean junction, boolean noExit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean trafficCalming, boolean trafficSignal, boolean turningLoop, String sunriseSunset, String civilTwilight, String astronomicalTwilight, String nauticalTwilight) {
         return new Accident(id, source, tmc, severity, startTime, endTime, weatherTimestamp, startLat, startLng, endLat, endLng, distance, number, street, side, city, county, state, zipcode, country, timezone, airport_Code, temperature, windChill, humidity, pressure, visibility, windDirection, windSpeed, precipitation, weatherCondition, amenity, bump, crossing, giveWay, junction, noExit, railway, roundabout, station, stop, trafficCalming, trafficSignal, turningLoop, sunriseSunset, civilTwilight, astronomicalTwilight, nauticalTwilight, description);
-    }
-
-
-    public Accident() {
-
     }
 
     private Accident(String id, String source, Float tmc, Integer severity, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime weatherTimestamp, Float startLat, Float startLng, Float endLat, Float endLng, Float distance, Float number, String street, String side, String city, String county, String state, String zipcode, String country, String timezone, String airportCode, Float temperature, Float windChill, Float humidity, Float pressure, Float visibility, String windDirection, Float windSpeed, Float precipitation, String weatherCondition, boolean amenity, boolean bump, boolean crossing, boolean giveWay, boolean junction, boolean noExit, boolean railway, boolean roundabout, boolean station, boolean stop, boolean trafficCalming, boolean trafficSignal, boolean turningLoop, String sunriseSunset, String civilTwilight, String astronomicalTwilight, String nauticalTwilight, String description) {

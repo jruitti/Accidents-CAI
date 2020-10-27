@@ -22,9 +22,6 @@ public class AccidentsBetweenDatesRepoImplementation implements IAccidentsBetwee
 
     @Override
     public Collection<Accident> queryAccidentsBetweenDates(LocalDateTime fromDate, LocalDateTime toDate) {
-
-        String fromDateString = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(fromDate);
-        String toDateString = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(toDate);
-        return iAccidentsBetweenDatesCRUD.findByStartTimeBetween(fromDateString,toDateString).stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
+        return iAccidentsBetweenDatesCRUD.findByStartTimeBetween(fromDate,toDate).stream().map(AccidentDataMapper::dataCoreMapper).collect(Collectors.toCollection(ArrayList::new));
     }
 }

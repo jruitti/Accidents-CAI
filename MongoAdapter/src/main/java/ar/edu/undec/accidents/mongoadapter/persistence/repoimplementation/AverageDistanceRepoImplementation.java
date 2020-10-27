@@ -20,7 +20,6 @@ public class AverageDistanceRepoImplementation implements IAverageDistanceReposi
     @Override
     public Double queryAverageDistance() {
         BasicQuery basicQuery = new BasicQuery("{End_Lat: { $ne: null }})");
-
         List<AverageDistanceEntity> retrieved = mongoTemplate.find(basicQuery, AverageDistanceEntity.class);
 
         Double averageDouble=retrieved.parallelStream().map(

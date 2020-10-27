@@ -19,7 +19,6 @@ public class AccidentsInRadiusController {
     @Autowired
     IAccidentsInRadiusInput accidentsInRadiusInput;
 
-
     @GetMapping(value="/accidentsInRadius")
     public ResponseEntity<?> getAccidentsInRadius(
             @RequestParam(value = "longitude") float longitude,

@@ -31,10 +31,10 @@ class MongoAdapterPersistenceIntegrationTests {
     @Test
     void getAccidentsBetweenDates_ExistsAccidents_ReturnCollection() {
         AccidentsBetweenDatesUseCase accidentsBetweenDatesUseCase = new AccidentsBetweenDatesUseCase(accidentsBetweenDatesRepository);
-        LocalDateTime fromDate = LocalDateTime.of(2016, 1, 1, 0, 0, 0);
-        LocalDateTime toDate = LocalDateTime.of(2016, 12, 31, 10, 0, 0);
+        LocalDateTime fromDate = LocalDateTime.of(2016, 1, 31, 0, 0, 0);
+        LocalDateTime toDate = LocalDateTime.of(2016, 3, 1, 23, 59, 59);
         ArrayList<Accident> retorno = (ArrayList<Accident>) accidentsBetweenDatesUseCase.getAccidentsBetweenDates(fromDate, toDate);
-        Assertions.assertEquals(410600, retorno.size());
+        Assertions.assertEquals(1040, retorno.size());
     }
 
 
@@ -62,9 +62,10 @@ class MongoAdapterPersistenceIntegrationTests {
 
     @Test
     void getDangerousPoints_DataExist_ReturnCollection() {
+        //Test para considerar 10000 accidentes del total de la base de datos
         float radiusInKm= 1;
         DangerousPointUseCase dangerousPointUseCase=new DangerousPointUseCase(dangerousPointRepository);
-        Assertions.assertEquals(570, ((List< DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
+        Assertions.assertEquals(1818, ((List< DangerousPoint>) dangerousPointUseCase.getDangerousPoints(radiusInKm)).get(0).getAmount());
     }
 
 }
