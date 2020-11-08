@@ -15,7 +15,7 @@ Consultas:
 > <http://localhost:port/accidentsInRadius?longitude=-84.058723&latitude=39.865147&radiusInKm=10>
 
 - Devolver los cinco 5 puntos más peligrosos (definiendo un determinado radio)
-> <http://localhost:port/dangerousPoints?radiusInKm=1.0
+> <http://localhost:port/dangerousPoints?radiusInKm=1.0>
 
 - Obtener la distancia promedio desde el inicio al fin del accidente
 > <http://localhost:port/averageDistance>
